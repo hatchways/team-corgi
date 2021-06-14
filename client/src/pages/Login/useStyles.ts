@@ -10,17 +10,17 @@ const useStyles = makeStyles(() => ({
   authWrapper: {
     display: 'flex',
     alignItems: 'flex-start',
-    justifyContent: 'space-between',
     flexDirection: 'column',
     minHeight: '100vh',
-    paddingTop: 23,
+    marginTop: '50vh',
   },
   welcome: {
-    fontSize: 26,
-    paddingBottom: 20,
+    fontSize: 35,
+    paddingBottom: '2rem',
     color: '#000000',
-    fontWeight: 700,
+    fontWeight: 900,
     fontFamily: "'Open Sans'",
+    textAlign: 'center',
   },
 }));
 

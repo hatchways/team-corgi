@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { SignalWifi1BarLockSharp } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   form: {
@@ -6,14 +7,14 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
   label: {
-    fontSize: 19,
-    color: 'rgb(0,0,0,0.4)',
-    paddingLeft: '5px',
+    fontSize: 15,
+    fontWeight: 700,
+    color: 'black',
+    marginBottom: '-0.8rem',
+    marginTop: '0.8rem',
   },
   inputs: {
-    marginTop: '.8rem',
-    height: '2rem',
-    padding: '5px',
+    height: '1.5rem',
   },
   forgot: {
     paddingRight: 10,
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.shape.borderRadius,
     marginTop: 49,
     fontSize: 16,
-    backgroundColor: '#3a8dff',
+    backgroundColor: 'primary',
     fontWeight: 'bold',
   },
 }));

@@ -39,7 +39,13 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
       })
       .catch((error) => console.error(error));
   }, [history]);
+  /*
+  This code will automatically cause a redirect to the login page if
+  I attempt to navigate to the "/signup" route
 
+  Commenting out this functionality until it is implemented:
+  
+  '''
   // use our cookies to check if we can login straight away
   useEffect(() => {
     const checkLoginWithCookies = async () => {
@@ -56,6 +62,9 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
     };
     checkLoginWithCookies();
   }, [updateLoginContext, history]);
+  '''
+
+  */
 
   return <AuthContext.Provider value={{ loggedInUser, updateLoginContext, logout }}>{children}</AuthContext.Provider>;
 };
