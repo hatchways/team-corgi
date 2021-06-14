@@ -4,7 +4,7 @@ This is a little description about your project.
 
 **Tech Stack:** MongoDB, Express.js, React.js, Node.js, Typescript
 
-**Contributors**: [Hatchways](https://github.com/hatchways) (replace)
+**Contributors**: [Hatchways](https://github.com/hatchways), [Chris](https://github.com/c-s-ale) (replace)
 
 ---
 
