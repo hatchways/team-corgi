@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#3a8dff',
   },
   submit: {
-    margin: theme.spacing(3, 2, 2),
+    margin: theme.spacing(3, 2, -1),
     padding: 10,
     width: 160,
     height: 56,

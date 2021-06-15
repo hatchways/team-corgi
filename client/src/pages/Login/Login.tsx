@@ -42,7 +42,9 @@ export default function Login(): JSX.Element {
       <CssBaseline />
       <Grid item xs={12} sm={8} md={7} elevation={6} component={Paper} square>
         <Box className={classes.authWrapper}>
-          <Box width="100%" maxWidth={450} p={3} alignSelf="center" paddingBottom="0">
+          {/* --Commented out until thew new authHeader is completed
+          <AuthHeader linkTo="/signup" asideText="Don't have an account?" btnText="Create account" />*/}
+          <Box width="100%" maxWidth={450} p={3} alignSelf="center">
             <Grid container>
               <Grid item xs>
                 <Typography className={classes.welcome} component="h1" variant="h5">
