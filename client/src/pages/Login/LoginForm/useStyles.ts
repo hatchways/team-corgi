@@ -21,14 +21,14 @@ const useStyles = makeStyles((theme) => ({
     color: '#3a8dff',
   },
   submit: {
-    margin: theme.spacing(3, 2, -7),
+    margin: theme.spacing(3, 2, -10),
     padding: 0,
     width: 160,
     height: 56,
     borderRadius: theme.shape.borderRadius,
     marginTop: 49,
     fontSize: 16,
-    backgroundColor: 'primary',
+    backgroundColor: theme.palette.primary.main,
     fontWeight: 'bold',
   },
 }));

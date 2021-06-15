@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { FormikHelpers } from 'formik';
 import Typography from '@material-ui/core/Typography';
-import { Link } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 import useStyles from './useStyles';
 import register from '../../helpers/APICalls/register';
 import SignUpForm from './SignUpForm/SignUpForm';
@@ -43,8 +43,7 @@ export default function Register(): JSX.Element {
       <CssBaseline />
       <Grid item xs={12} sm={8} md={7} elevation={6} component={Paper} square>
         <Box className={classes.authWrapper}>
-          {/* --Commented out until thew new authHeader is completed
-          <AuthHeader linkTo="/signup" asideText="Don't have an account?" btnText="Create account" />*/}
+          <AuthHeader linkTo="/signup" asideText="Don't have an account?" btnText="Create account" />
           <Box width="100%" maxWidth={450} p={3} alignSelf="center">
             <Grid container>
               <Grid item xs>
@@ -55,12 +54,11 @@ export default function Register(): JSX.Element {
             </Grid>
             <SignUpForm handleSubmit={handleSubmit} />
           </Box>
-          <Box p={1} alignSelf="center" />
           <Box alignSelf="center" paddingTop="1rem">
             <Typography variant="button">
               Already a member?
               <span> </span>
-              <Link href="/login">Login</Link>
+              <Link to="/login">Login</Link>
             </Typography>
           </Box>
         </Box>

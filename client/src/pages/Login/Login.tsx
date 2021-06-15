@@ -2,7 +2,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 import { FormikHelpers } from 'formik';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './useStyles';
@@ -42,8 +42,7 @@ export default function Login(): JSX.Element {
       <CssBaseline />
       <Grid item xs={12} sm={8} md={7} elevation={6} component={Paper} square>
         <Box className={classes.authWrapper}>
-          {/* --Commented out until thew new authHeader is completed
-          <AuthHeader linkTo="/signup" asideText="Don't have an account?" btnText="Create account" />*/}
+          <AuthHeader linkTo="/signup" asideText="Don't have an account?" btnText="Create account" />
           <Box width="100%" maxWidth={450} p={3} alignSelf="center">
             <Grid container>
               <Grid item xs>
@@ -54,12 +53,11 @@ export default function Login(): JSX.Element {
             </Grid>
             <LoginForm handleSubmit={handleSubmit} />
           </Box>
-          <Box p={1} alignSelf="center" padding="0" />
           <Box alignSelf="center">
             <Typography variant="button">
               Not a member yet?
               <span> </span>
-              <Link href="/signup">Register</Link>
+              <Link to="/signup">Register</Link>
             </Typography>
           </Box>
         </Box>
