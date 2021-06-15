@@ -42,7 +42,7 @@ export default function Login(): JSX.Element {
       <CssBaseline />
       <Grid item xs={12} sm={8} md={7} elevation={6} component={Paper} square>
         <Box className={classes.authWrapper}>
-          <Box width="100%" maxWidth={450} p={3} alignSelf="center">
+          <Box width="100%" maxWidth={450} p={3} alignSelf="center" paddingBottom="0">
             <Grid container>
               <Grid item xs>
                 <Typography className={classes.welcome} component="h1" variant="h5">
@@ -52,9 +52,9 @@ export default function Login(): JSX.Element {
             </Grid>
             <LoginForm handleSubmit={handleSubmit} />
           </Box>
-          <Box p={1} alignSelf="center" />
-          <Box alignSelf="center" paddingTop="1rem">
-            <Typography component="h2">
+          <Box p={1} alignSelf="center" padding="0" />
+          <Box alignSelf="center">
+            <Typography variant="button">
               Not a member yet?
               <span> </span>
               <Link href="/signup">Register</Link>

@@ -55,7 +55,7 @@ export default function Register(): JSX.Element {
           </Box>
           <Box p={1} alignSelf="center" />
           <Box alignSelf="center" paddingTop="1rem">
-            <Typography component="h2">
+            <Typography variant="button">
               Already a member?
               <span> </span>
               <Link href="/login">Login</Link>
