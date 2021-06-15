@@ -17,6 +17,7 @@ const profileSchema = new mongoose.Schema({
   phoneNumber: Number,
   profilePic: String,
   aboutMe: String,
+  gender: String,
   isSitter: {
     type: Boolean,
     required: true,
