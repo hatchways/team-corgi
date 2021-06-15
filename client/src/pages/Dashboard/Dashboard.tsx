@@ -30,13 +30,9 @@ export default function Dashboard(): JSX.Element {
   return (
     <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
       <CssBaseline />
-      {/*
-      Commented out to test/load the register page without being redirected to Log in
-
       <Grid item className={classes.drawerWrapper}>
-         ChatSideBanner loggedInUser={loggedInUser} />
-      </Grid> 
-      */}
+        <ChatSideBanner loggedInUser={loggedInUser} />
+      </Grid>
     </Grid>
   );
 }

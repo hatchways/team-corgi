@@ -9,10 +9,10 @@ const useStyles = makeStyles(() => ({
   },
   authWrapper: {
     display: 'flex',
+    position: 'relative',
     alignItems: 'flex-start',
     flexDirection: 'column',
-    minHeight: '100vh',
-    marginTop: '50vh',
+    margin: '25%',
   },
   welcome: {
     fontSize: 35,
