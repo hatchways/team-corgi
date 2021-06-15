@@ -11,6 +11,8 @@ import LoginForm from './LoginForm/LoginForm';
 import AuthHeader from '../../components/AuthHeader/AuthHeader';
 import { useAuth } from '../../context/useAuthContext';
 import { useSnackBar } from '../../context/useSnackbarContext';
+import { Button } from '@material-ui/core';
+import dogs from '../../Images/goldenRetrievers.jpg';
 
 export default function Login(): JSX.Element {
   const classes = useStyles();
@@ -33,6 +35,14 @@ export default function Login(): JSX.Element {
 
         setSubmitting(false);
         updateSnackBarMessage('An unexpected error occurred. Please try again');
+      }
+    });
+  };
+
+  const handleDemoUser = () => {
+    login('test@test.com', 'test123').then((data) => {
+      if (data.success) {
+        updateLoginContext(data.success);
       }
     });
   };
@@ -60,6 +70,9 @@ export default function Login(): JSX.Element {
               <Link to="/signup">Register</Link>
             </Typography>
           </Box>
+          <Button className={classes.demoUserButton} onClick={handleDemoUser}>
+            Sign in With Demo User
+          </Button>
         </Box>
       </Grid>
     </Grid>
