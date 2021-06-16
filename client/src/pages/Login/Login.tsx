@@ -42,7 +42,6 @@ export default function Login(): JSX.Element {
     });
   };
 
-  //---CODE FOR ADDING A BUTTON FOR A DEMO USER: DEVELOPMENT ONLY
   const handleDemoUser = () => {
     login('test@test.com', 'test123').then((data) => {
       if (data.success) {
