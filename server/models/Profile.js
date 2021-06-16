@@ -25,10 +25,26 @@ const profileSchema = new mongoose.Schema({
   },
   availability: [
     {
-      start: Date,
-      end: Date,
+      day: Number,
+      morning: {
+        type: Boolean,
+        default: false,
+      },
+      afternoon: {
+        type: Boolean,
+        default: false,
+      },
+      evening: {
+        type: Boolean,
+        default: false,
+      },
+      night: {
+        type: Boolean,
+        default: false,
+      },
     },
   ],
+
   wage: Number,
 });
 
