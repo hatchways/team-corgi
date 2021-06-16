@@ -69,8 +69,9 @@ export default function Login(): JSX.Element {
           <Box alignSelf="center">
             <Typography variant="button">
               Not a member yet?
-              <span> </span>
-              <Link to="/signup">Register</Link>
+              <Link to="/signup" style={{ marginLeft: '5px' }}>
+                Register
+              </Link>
             </Typography>
           </Box>
           <Button className={classes.demoUserButton} onClick={handleDemoUser}>
