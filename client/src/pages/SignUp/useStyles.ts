@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { theme } from '../../themes/theme';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -8,11 +9,12 @@ const useStyles = makeStyles(() => ({
     },
   },
   authWrapper: {
-    display: 'flex',
     position: 'relative',
+    top: '25%',
+    width: '50vw',
+    display: 'flex',
     alignItems: 'flex-start',
     flexDirection: 'column',
-    margin: '25%',
   },
   welcome: {
     fontSize: 35,
@@ -21,6 +23,38 @@ const useStyles = makeStyles(() => ({
     fontWeight: 900,
     fontFamily: "'Open Sans'",
     textAlign: 'center',
+  },
+  demoUserButton: {
+    position: 'fixed',
+    left: '1rem',
+    bottom: '1rem',
+    backgroundColor: 'green',
+    color: 'white',
+  },
+  dogs: {
+    objectPosition: '-20rem',
+    objectFit: 'cover',
+    maxWidth: '50vw',
+  },
+  sitterLoginSignup: {
+    position: 'fixed',
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: '2rem',
+    marginRight: '4rem',
+    right: 0,
+    top: 0,
+  },
+  becomeASitterText: {
+    fontSize: 20,
+    marginRight: '4rem',
+  },
+  signupButton: {
+    marginLeft: '2rem',
+    backgroundColor: theme.palette.primary.main,
+  },
+  loginButton: {
+    backgroundColor: 'red',
   },
 }));
 

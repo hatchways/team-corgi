@@ -39,6 +39,7 @@ export default function Login(): JSX.Element {
     });
   };
 
+  //---CODE FOR ADDING A BUTTON FOR A DEMO USER: DEVELOPMENT ONLY
   const handleDemoUser = () => {
     login('test@test.com', 'test123').then((data) => {
       if (data.success) {
@@ -48,7 +49,7 @@ export default function Login(): JSX.Element {
   };
 
   return (
-    <Grid container component="main" className={classes.root}>
+    <Grid container component="main" direction="row" wrap="nowrap" className={classes.root}>
       <CssBaseline />
       <Grid item xs={12} sm={8} md={7} elevation={6} component={Paper} square>
         <Box className={classes.authWrapper}>
@@ -75,6 +76,7 @@ export default function Login(): JSX.Element {
           </Button>
         </Box>
       </Grid>
+      <img className={classes.dogs} src={dogs} />
     </Grid>
   );
 }

@@ -11,6 +11,9 @@ import SignUpForm from './SignUpForm/SignUpForm';
 import AuthHeader from '../../components/AuthHeader/AuthHeader';
 import { useAuth } from '../../context/useAuthContext';
 import { useSnackBar } from '../../context/useSnackbarContext';
+import { Button } from '@material-ui/core';
+import login from '../../helpers/APICalls/login';
+import dogs from '../../Images/goldenRetrievers.jpg';
 
 export default function Register(): JSX.Element {
   const classes = useStyles();
@@ -38,8 +41,17 @@ export default function Register(): JSX.Element {
     });
   };
 
+  //---CODE FOR ADDING A BUTTON FOR A DEMO USER: DEVELOPMENT ONLY
+  const handleDemoUser = () => {
+    login('test@test.com', 'test123').then((data) => {
+      if (data.success) {
+        updateLoginContext(data.success);
+      }
+    });
+  };
+
   return (
-    <Grid container component="main" className={classes.root}>
+    <Grid container component="main" direction="row" wrap="nowrap" className={classes.root}>
       <CssBaseline />
       <Grid item xs={12} sm={8} md={7} elevation={6} component={Paper} square>
         <Box className={classes.authWrapper}>
@@ -61,8 +73,27 @@ export default function Register(): JSX.Element {
               <Link to="/login">Login</Link>
             </Typography>
           </Box>
+          <Button className={classes.demoUserButton} onClick={handleDemoUser}>
+            Sign in With Demo User
+          </Button>
         </Box>
       </Grid>
+      <img className={classes.dogs} src={dogs} />
+      <Box className={classes.sitterLoginSignup}>
+        <Typography className={classes.becomeASitterText} variant="button">
+          <Link to="/signup" style={{ textDecoration: 'none' }}>
+            BECOME A SITTER
+          </Link>
+        </Typography>
+        <Link to="/signup">
+          <Button className={classes.loginButton}>
+            <Typography>Log in</Typography>
+          </Button>
+        </Link>
+        <Link to="/login">
+          <Button className={classes.signupButton}>Sign up</Button>
+        </Link>
+      </Box>
     </Grid>
   );
 }

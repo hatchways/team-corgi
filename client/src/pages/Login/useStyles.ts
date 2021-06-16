@@ -1,18 +1,21 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { wrap } from 'module';
 
 const useStyles = makeStyles(() => ({
   root: {
     minHeight: '100vh',
+    minWidth: '100vw',
     '& .MuiInput-underline:before': {
       borderBottom: '1.2px solid rgba(0, 0, 0, 0.2)',
     },
   },
   authWrapper: {
-    display: 'flex',
     position: 'relative',
+    top: '25%',
+    minWidth: '35%',
+    display: 'flex',
     alignItems: 'flex-start',
     flexDirection: 'column',
-    margin: '25%',
   },
   welcome: {
     fontSize: 35,
@@ -21,6 +24,18 @@ const useStyles = makeStyles(() => ({
     fontWeight: 900,
     fontFamily: "'Open Sans'",
     textAlign: 'center',
+  },
+  demoUserButton: {
+    position: 'fixed',
+    left: '1rem',
+    bottom: '1rem',
+    backgroundColor: 'green',
+    color: 'white',
+  },
+  dogs: {
+    objetFit: 'cover',
+    flex: 1,
+    objectPosition: '10%',
   },
 }));
 
