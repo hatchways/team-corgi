@@ -8,7 +8,6 @@ const requestSchema = new mongoose.Schema({
   },
   sitter_id: {
     type: String,
-    required: true,
     unique: true,
   },
   start: {
