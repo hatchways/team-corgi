@@ -14,6 +14,7 @@ import { Button } from '@material-ui/core';
 import login from '../../helpers/APICalls/login';
 import dogs from '../../Images/goldenRetrievers.jpg';
 import LandingPageBar from '../../components/LandingPageBar/LandingPageBar';
+import Logo from '../../components/Logo/Logo';
 
 export default function Register(): JSX.Element {
   const classes = useStyles();
@@ -52,6 +53,7 @@ export default function Register(): JSX.Element {
 
   return (
     <Grid container component="main" direction="row" wrap="nowrap" className={classes.root}>
+      <Logo />
       <CssBaseline />
       <Grid item xs={12} sm={8} md={7} elevation={6} component={Paper} square>
         <Box className={classes.authWrapper}>
