@@ -5,7 +5,7 @@ import { useAuth } from '../../context/useAuthContext';
 
 interface RouteProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  component: any;
+  component: React.ComponentType<any>;
   path?: string;
   exact?: boolean;
 }
