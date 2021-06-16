@@ -39,7 +39,6 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
       })
       .catch((error) => console.error(error));
   }, [history]);
-
   // use our cookies to check if we can login straight away
   useEffect(() => {
     const checkLoginWithCookies = async () => {
@@ -56,7 +55,6 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
     };
     checkLoginWithCookies();
   }, [updateLoginContext, history]);
-
   return <AuthContext.Provider value={{ loggedInUser, updateLoginContext, logout }}>{children}</AuthContext.Provider>;
 };
 
