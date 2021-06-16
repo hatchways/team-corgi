@@ -1,10 +1,9 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { wrap } from 'module';
+import { theme } from '../../themes/theme';
 
 const useStyles = makeStyles(() => ({
   root: {
     minHeight: '100vh',
-    minWidth: '100vw',
     '& .MuiInput-underline:before': {
       borderBottom: '1.2px solid rgba(0, 0, 0, 0.2)',
     },
@@ -12,7 +11,7 @@ const useStyles = makeStyles(() => ({
   authWrapper: {
     position: 'relative',
     top: '25%',
-    minWidth: '35%',
+    width: '50vw',
     display: 'flex',
     alignItems: 'flex-start',
     flexDirection: 'column',
@@ -33,9 +32,50 @@ const useStyles = makeStyles(() => ({
     color: 'white',
   },
   dogs: {
-    objetFit: 'cover',
-    flex: 1,
-    objectPosition: '10%',
+    objectPosition: '-20rem',
+    objectFit: 'cover',
+    maxWidth: '50vw',
+  },
+  sitterLoginSignup: {
+    position: 'fixed',
+    display: 'flex',
+    flexDirection: 'row',
+    marginTop: '2rem',
+    marginRight: '4rem',
+    right: 0,
+    top: 0,
+  },
+  becomeASitterText: {
+    alignSelf: 'center',
+    fontSize: 20,
+    color: 'white',
+    marginRight: '4rem',
+  },
+  signupButton: {
+    marginLeft: '1rem',
+    width: '10rem',
+    height: '4rem',
+    backgroundColor: theme.palette.primary.main,
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 600,
+  },
+  signupButtonText: {
+    color: 'white',
+    textDecoration: 'none',
+  },
+  loginButton: {
+    color: 'white',
+    border: '1px solid',
+    borderColor: 'white',
+    width: '10rem',
+    height: '4rem',
+    fontSize: 18,
+    fontWeight: 600,
+  },
+  loginButtonText: {
+    color: 'white',
+    textDecoration: 'none',
   },
 }));
 

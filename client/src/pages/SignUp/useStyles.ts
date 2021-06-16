@@ -46,15 +46,36 @@ const useStyles = makeStyles(() => ({
     top: 0,
   },
   becomeASitterText: {
+    alignSelf: 'center',
     fontSize: 20,
+    color: 'white',
     marginRight: '4rem',
   },
   signupButton: {
-    marginLeft: '2rem',
+    marginLeft: '1rem',
+    width: '10rem',
+    height: '4rem',
     backgroundColor: theme.palette.primary.main,
+    color: 'white',
+    fontSize: 18,
+    fontWeight: 600,
+  },
+  signupButtonText: {
+    color: 'white',
+    textDecoration: 'none',
   },
   loginButton: {
-    backgroundColor: 'red',
+    color: 'white',
+    border: '1px solid',
+    borderColor: 'white',
+    width: '10rem',
+    height: '4rem',
+    fontSize: 18,
+    fontWeight: 600,
+  },
+  loginButtonText: {
+    color: 'white',
+    textDecoration: 'none',
   },
 }));
 

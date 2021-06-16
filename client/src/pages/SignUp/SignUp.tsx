@@ -55,7 +55,6 @@ export default function Register(): JSX.Element {
       <CssBaseline />
       <Grid item xs={12} sm={8} md={7} elevation={6} component={Paper} square>
         <Box className={classes.authWrapper}>
-          <AuthHeader linkTo="/signup" asideText="Don't have an account?" btnText="Create account" />
           <Box width="100%" maxWidth={450} p={3} alignSelf="center">
             <Grid container>
               <Grid item xs>
@@ -80,18 +79,16 @@ export default function Register(): JSX.Element {
       </Grid>
       <img className={classes.dogs} src={dogs} />
       <Box className={classes.sitterLoginSignup}>
-        <Typography className={classes.becomeASitterText} variant="button">
-          <Link to="/signup" style={{ textDecoration: 'none' }}>
-            BECOME A SITTER
-          </Link>
-        </Typography>
-        <Link to="/signup">
-          <Button className={classes.loginButton}>
-            <Typography>Log in</Typography>
+        <Link to="/signup" className={classes.becomeASitterText}>
+          BECOME A SITTER
+        </Link>
+        <Link className={classes.loginButtonText} to="/login">
+          <Button variant="outlined" className={classes.loginButton}>
+            LOGIN
           </Button>
         </Link>
-        <Link to="/login">
-          <Button className={classes.signupButton}>Sign up</Button>
+        <Link className={classes.signupButtonText} to="/signup">
+          <Button className={classes.signupButton}>SIGNUP</Button>
         </Link>
       </Box>
     </Grid>
