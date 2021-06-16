@@ -1,7 +1,6 @@
-import { makeStyles } from '@material-ui/core/styles';
-import { theme } from '../../themes/theme';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme: Theme) => ({
   sitterLoginSignup: {
     position: 'fixed',
     display: 'flex',

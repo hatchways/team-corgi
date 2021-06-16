@@ -53,9 +53,9 @@ export default function Register(): JSX.Element {
 
   return (
     <Grid container component="main" direction="row" wrap="nowrap" className={classes.root}>
-      <Logo />
       <CssBaseline />
       <Grid item xs={12} sm={8} md={7} elevation={6} component={Paper} square>
+        <Logo />
         <Box className={classes.authWrapper}>
           <Box width="100%" maxWidth={450} p={3} alignSelf="center">
             <Grid container>

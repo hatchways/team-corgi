@@ -1,26 +1,19 @@
-import { makeStyles } from '@material-ui/core/styles';
-import { theme } from '../../themes/theme';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => ({
-  logoBox: {
-    display: 'flex',
-    position: 'fixed',
-    height: '4rem',
-    top: '3rem',
-    left: '3rem',
-  },
+const useStyles = makeStyles((theme: Theme) => ({
   logoText: {
     marginLeft: '1.5rem',
+    marginTop: '2rem',
     fontSize: 35,
     fontWeight: 700,
-    alignSelf: 'center',
     letterSpacing: '-1px',
   },
   logoIcon: {
+    marginLeft: '2rem',
+    marginTop: '2rem',
     color: theme.palette.primary.main,
     height: '4rem',
     width: '4rem',
-    alignSelf: 'center',
   },
 }));
 
