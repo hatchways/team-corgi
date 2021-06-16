@@ -13,6 +13,7 @@ import { useAuth } from '../../context/useAuthContext';
 import { useSnackBar } from '../../context/useSnackbarContext';
 import { Button } from '@material-ui/core';
 import dogs from '../../Images/goldenRetrievers.jpg';
+import LandingPageBar from '../../components/LandingPageBar/LandingPageBar';
 
 export default function Login(): JSX.Element {
   const classes = useStyles();
@@ -76,19 +77,7 @@ export default function Login(): JSX.Element {
         </Box>
       </Grid>
       <img className={classes.dogs} src={dogs} />
-      <Box className={classes.sitterLoginSignup}>
-        <Link to="/signup" className={classes.becomeASitterText}>
-          BECOME A SITTER
-        </Link>
-        <Link className={classes.loginButtonText} to="/login">
-          <Button variant="outlined" className={classes.loginButton}>
-            LOGIN
-          </Button>
-        </Link>
-        <Link className={classes.signupButtonText} to="/signup">
-          <Button className={classes.signupButton}>SIGNUP</Button>
-        </Link>
-      </Box>
+      <LandingPageBar signupLink="/signup" loginLink="/login" sitterLink="/signup"></LandingPageBar>
     </Grid>
   );
 }
