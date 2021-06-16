@@ -9,6 +9,7 @@ import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
 
 import './App.css';
+import ProfileSettings from './components/ProfileSettings/ProfileSettings';
 
 function App(): JSX.Element {
   return (
