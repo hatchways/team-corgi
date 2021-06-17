@@ -9,8 +9,6 @@ import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
 
 import './App.css';
-import ProfileSettings from './components/ProfileSettings/ProfileSettings';
-import Sidebar from './components/Sidebar/SideBar';
 import EditProfile from './components/EditProfile/EditProfile';
 import ProfilePhoto from './components/ProfilePhoto/ProfilePhoto';
 import Payment from './components/Payment/Payment';
@@ -26,10 +24,14 @@ function App(): JSX.Element {
           <AuthProvider>
             <SocketProvider>
               <Switch>
-                <Route exact path="/login" component={EditProfile} />
+                <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/editprofile" component={EditProfile}></Route>
                 <Route exact path="/profilephoto" component={ProfilePhoto} />
+                <Route exact path="/payment" component={Payment} />
+                <Route exact path="/availability" component={Availability} />
+                <Route exact path="/security" component={Security} />
+                <Route exact path="/settings" component={Settings} />
                 <Route exact path="/dashboard">
                   <Dashboard />
                 </Route>

@@ -16,7 +16,7 @@ interface Props {
   description?: string;
 }
 
-const EditProfile = (props: Props) => {
+const EditProfile = (props: Props): JSX.Element => {
   const classes = useStyles();
 
   return (

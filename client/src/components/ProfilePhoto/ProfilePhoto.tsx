@@ -1,9 +1,9 @@
 import { Grid, Paper } from '@material-ui/core';
-import React, { ReactElement } from 'react';
+
 import Sidebar from '../Sidebar/SideBar';
 import useStyles from './useStyles';
 
-const ProfilePhoto = () => {
+const ProfilePhoto = (): JSX.Element => {
   const classes = useStyles();
   return (
     <Grid container>
