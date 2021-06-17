@@ -17,7 +17,7 @@ import makeSitterRequest from '../../helpers/APICalls/makeSitterRequest';
 
 export default function LandingPage(): JSX.Element {
   const classes = useStyles();
-  /*const { updateLoginContext } = useAuth();*/
+  const { updateLoginContext } = useAuth();
   const { updateSnackBarMessage } = useSnackBar();
 
   const handleSubmit = (
@@ -38,7 +38,7 @@ export default function LandingPage(): JSX.Element {
   const handleDemoUser = () => {
     login('test@test.com', 'test123').then((data) => {
       if (data.success) {
-        /*updateLoginContext(data.success);*/
+        updateLoginContext(data.success);
       }
     });
   };
