@@ -10,6 +10,13 @@ import { SnackBarProvider } from './context/useSnackbarContext';
 
 import './App.css';
 import ProfileSettings from './components/ProfileSettings/ProfileSettings';
+import Sidebar from './components/Sidebar/SideBar';
+import EditProfile from './components/EditProfile/EditProfile';
+import ProfilePhoto from './components/ProfilePhoto/ProfilePhoto';
+import Payment from './components/Payment/Payment';
+import Availability from './components/Availability/Availability';
+import Security from './components/Security/Security';
+import Settings from './components/Settings/Settings';
 
 function App(): JSX.Element {
   return (
@@ -19,8 +26,10 @@ function App(): JSX.Element {
           <AuthProvider>
             <SocketProvider>
               <Switch>
-                <Route exact path="/login" component={Login} />
+                <Route exact path="/login" component={EditProfile} />
                 <Route exact path="/signup" component={Signup} />
+                <Route exact path="/editprofile" component={EditProfile}></Route>
+                <Route exact path="/profilephoto" component={ProfilePhoto} />
                 <Route exact path="/dashboard">
                   <Dashboard />
                 </Route>

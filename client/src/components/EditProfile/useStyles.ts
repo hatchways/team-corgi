@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   gridContainer: {
-    margin: '2% 15% 0% 15%',
+    margin: '5% 15% 0% 15%',
     padding: '1%',
     justifyContent: 'center',
   },
@@ -14,7 +14,8 @@ const useStyles = makeStyles(() => ({
     fontWeight: 'bold',
     fontSize: '14px',
     marginTop: '12px',
-    textAlign: 'center',
+    textAlign: 'end',
+    paddingRight: '10px',
   },
   formSelectField1: {
     marginBottom: '15px',
@@ -30,7 +31,7 @@ const useStyles = makeStyles(() => ({
     float: 'right',
   },
   submitButton: {
-    marginLeft: '50%',
+    marginLeft: '45%',
   },
 }));
 
