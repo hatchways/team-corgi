@@ -18,6 +18,10 @@ const requestSchema = new mongoose.Schema({
     end: Date,
     required: true,
   },
+  dropOffTime: {
+    type: String,
+    required: true,
+  },
   accept: {
     accepted: Boolean,
     default: false,
