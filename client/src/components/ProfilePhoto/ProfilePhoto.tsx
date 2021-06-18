@@ -28,7 +28,7 @@ const ProfilePhoto = (): JSX.Element => {
       <Grid item xs={10}>
         <Paper className={classes.root} elevation={2}>
           <Grid container justify="center" className={classes.main}>
-            <Grid xs={6} container alignItems="center" direction="column">
+            <Grid container alignItems="center" direction="column" className={classes.subMain}>
               <Typography className={classes.title}>Profile Photo</Typography>
               <AvatarDisplay loggedIn user={loggedInUser} className={classes.displayPic} />
               <Typography className={classes.explanation}>
