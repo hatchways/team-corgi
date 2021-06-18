@@ -22,11 +22,6 @@ exports.newRequest = asycnHandler(async (req, res, next) => {
 // Get all users requests
 exports.userRequests = asycnHandler(async (req, res, next) => {
     const id = req.params.user.id;
-    //find all the requests that have the users id, or sitter id
-    //this will include pending *and* completed requests, which can
-    //be handled by the front end, in order to display an accurate
-    //history, we can also group them in the app in case there are
-    //users who both are sitters, and use the app to find sitters
     const requests = await Requests.find(
         { $or: [{"user.id": id}, {"sitter.id": id}]
     });
