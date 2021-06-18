@@ -11,6 +11,12 @@ import { SnackBarProvider } from './context/useSnackbarContext';
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 
 import './App.css';
+import EditProfile from './components/EditProfile/EditProfile';
+import ProfilePhoto from './components/ProfilePhoto/ProfilePhoto';
+import Payment from './components/Payment/Payment';
+import Availability from './components/Availability/Availability';
+import Security from './components/Security/Security';
+import Settings from './components/Settings/Settings';
 
 function App(): JSX.Element {
   return (
@@ -23,6 +29,12 @@ function App(): JSX.Element {
                 <Route exact path="/landingpage" component={LandingPage} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
+                <Route exact path="/editprofile" component={EditProfile}></Route>
+                <Route exact path="/profilephoto" component={ProfilePhoto} />
+                <Route exact path="/payment" component={Payment} />
+                <Route exact path="/availability" component={Availability} />
+                <Route exact path="/security" component={Security} />
+                <Route exact path="/settings" component={Settings} />
                 <Route exact path="/dashboard">
                   <Dashboard />
                 </Route>
