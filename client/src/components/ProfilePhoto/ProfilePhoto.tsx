@@ -6,14 +6,18 @@ import useStyles from './useStyles';
 import AvatarDisplay from '../AvatarDisplay/AvatarDisplay';
 import { useAuth } from '../../context/useAuthContext';
 import { useHistory } from 'react-router-dom';
+import uploadPictureRequest from '../../helpers/APICalls/uploadPic';
 
 const ProfilePhoto = (): JSX.Element => {
   const classes = useStyles();
   const { loggedInUser } = useAuth();
   const history = useHistory();
+
   const handleUpload = (event: any) => {
-    console.log(event.target.files[0]);
+    event.preventDefault();
+    if (event.target.files instanceof FileList) uploadPictureRequest(event.target.files[0]);
   };
+
   if (loggedInUser === undefined) return <CircularProgress />;
   if (!loggedInUser) {
     history.push('/login');

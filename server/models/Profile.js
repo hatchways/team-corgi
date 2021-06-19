@@ -15,7 +15,10 @@ const profileSchema = new mongoose.Schema({
   },
   city: String,
   phoneNumber: Number,
-  profilePic: String,
+  profilePhoto: {
+    name: String,
+    pic: { data: Buffer, contentType: String },
+  },
   aboutMe: String,
   gender: String,
   isSitter: {
