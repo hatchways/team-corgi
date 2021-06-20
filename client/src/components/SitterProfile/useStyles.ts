@@ -1,51 +1,58 @@
 import { createStyles, makeStyles, Theme } from '@material-ui/core';
+import { Translate } from '@material-ui/icons';
+import { relative } from 'path';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    main: {
+    mainCard: {
+      margin: '1rem',
+      position: 'relative',
       flex: 1,
-      justifyContent: 'flex-start',
-      alignContent: 'stretch',
     },
-    housePicture: {
-      flex: 1,
+    cardMedia: {
       objectFit: 'cover',
-      maxHeight: '40%',
+      minHeight: '300px',
+      flex: 1,
     },
-    displayPic: {
-      alignSelf: 'center',
-      marginTop: '-4rem',
-      width: '8rem',
-      height: '8rem',
-      boxShadow: '3',
-      border: '4px solid white',
+    avatarPaper: {
+      position: 'absolute',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      borderRadius: '50%',
+      flexShrink: 1,
+    },
+    firstGridItem: {
+      marginTop: '4rem',
+    },
+    gridItem: {
+      textAlign: 'center',
+    },
+    avatar: {
+      width: '6rem',
+      height: '6rem',
+      margin: '4px',
     },
     name: {
       fontWeight: 700,
-      textAlign: 'center',
-    },
-    gridItem: {
-        marginTop: '2rem',
+      fontSize: 24,
     },
     subtitle: {
-        fontSize: '16px',
-        textAlign: 'center',
-        marginTop: '-1rem',
+      fontSize: 16,
     },
     location: {
-        color: '#b0acac',
-        textAlign: 'center',
+      color: 'gray',
+      marginTop: '2rem',
     },
-    locationIcon: {
-        color: theme.palette.primary.main,
-        marginRight: '1rem',
+    cardContent: {
+      margin: '2rem',
     },
-    aboutMe: {
-        fontWeight: 700,
+    contentTypography: {
+      fontWeight: 700,
+      marginBottom: '1rem',
     },
-    aboutMeParagraph: {
-        fontSize: '16px',
-    }
+    imageDrawer: {
+      display: 'flex',
+    },
   }),
 );
 
