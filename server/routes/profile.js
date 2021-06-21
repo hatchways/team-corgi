@@ -10,7 +10,7 @@ const {
     deleteProfile,
 } = require("../controllers/profile");
 
-router.route("/").post(createProfile);
+router.route("/").post(protect, createProfile);
 router.route("/").get(allProfiles);
 router.route("/:id").get(searchProfiles);
 router.route("/:id").patch(protect, editProfile);
