@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const AutoIncrement = require("mongoose-sequence")(mongoose);
 
 const requestSchema = new mongoose.Schema({
   user: {
@@ -37,6 +36,5 @@ const requestSchema = new mongoose.Schema({
     default: false,
   },
 });
-requestSchema.plugin(AutoIncrement, {id: 'request_seq', inc_field: 'requestId'});
 
 module.exports = Request = mongoose.model("request", requestSchema);

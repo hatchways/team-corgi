@@ -36,7 +36,7 @@ exports.userRequests = asycnHandler(async (req, res, next) => {
 // @route PATCH /request/:requestId
 // Edit a request with matching userId
 exports.editRequest = asycnHandler(async (req, res, next) => {
-    const id = req.params.requestId;
+    const id = req.params._id;
     const request = req.body;
 
     try {
@@ -51,7 +51,7 @@ exports.editRequest = asycnHandler(async (req, res, next) => {
 // @route DELETE /request/:requestId
 // Delete a request with matching requestId
 exports.deleteRequest = asycnHandler(async (req, res, next) => {
-    const id = req.params.requestId;
+    const id = req.params._id;
     const request = Request.findbyId(id);
     if(!request) {
         res.status(404);
