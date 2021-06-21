@@ -11,23 +11,19 @@ const notificationSchema = new mongoose.Schema({
         default: Date.now
     },
     sender: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
     },
     receiver: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
     },
     title: {
         type: String,
         required: true,
     },
-    description: {
-        type: String,
-
-    },
     read: {
-        type: boolean,
+        type: Boolean,
         required: true,
         default: false,
     }
