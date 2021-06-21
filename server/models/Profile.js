@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const profileSchema = new mongoose.Schema({
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+  },
   firstName: {
     type: String,
     required: true,
@@ -25,22 +29,22 @@ const profileSchema = new mongoose.Schema({
   },
   availability: [
     {
-      day: Number,
+      day: String,
       morning: {
         type: Boolean,
-        default: false,
+        default: true,
       },
       afternoon: {
         type: Boolean,
-        default: false,
+        default: true,
       },
       evening: {
         type: Boolean,
-        default: false,
+        default: true,
       },
       night: {
         type: Boolean,
-        default: false,
+        default: true,
       },
     },
   ],
