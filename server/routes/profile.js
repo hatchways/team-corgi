@@ -3,14 +3,14 @@ const router = express.Router();
 
 const protect = require("../middleware/auth");
 const {
-  allProfiles,
-  createProfile,
-  searchProfiles,
-  editProfile,
-  deleteProfile,
+    allProfiles,
+    createProfile,
+    searchProfiles,
+    editProfile,
+    deleteProfile,
 } = require("../controllers/profile");
 
-router.route("/").post(protect, createProfile);
+router.route("/").post(createProfile);
 router.route("/").get(allProfiles);
 router.route("/:id").get(searchProfiles);
 router.route("/:id").patch(protect, editProfile);

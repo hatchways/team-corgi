@@ -3,9 +3,9 @@ const { getAllnotifications, createNotification, readNotification, getUnreadNoti
 const router = express.Router();
 
 
-router.route('/').get(getAllnotifications);
+router.route('/all/:id').get(getAllnotifications);
 router.route('/').post(createNotification);
 router.route('/:id').get(readNotification);
-router.route('/unread').get(getUnreadNotifications);
+router.route('/unread/:id').get(getUnreadNotifications);
 
 module.exports = router;
