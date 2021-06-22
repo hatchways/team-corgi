@@ -5,9 +5,12 @@ import { relative } from 'path';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     mainCard: {
+      margin: '1rem',
       height: '400px',
       width: '275px',
       display: 'flex',
+      marginLeft: '2rem',
+      marginRight: '2rem',
     },
     grid: {
       flex: 1,
@@ -37,7 +40,6 @@ const useStyles = makeStyles((theme: Theme) =>
       marginBottom: '25px',
     },
     dropInText: {
-
       borderColor: 'gray',
     },
     dropOffLabel: {

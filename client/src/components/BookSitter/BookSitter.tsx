@@ -20,7 +20,7 @@ const BookSitter = (): JSX.Element => {
   const { loggedInUser } = useAuth();
 
   return (
-    <Card className={classes.mainCard}>
+    <Card className={classes.mainCard} elevation={5}>
       <Paper elevation={3} className={classes.paper}>
         <form className={classes.form}>
           <Grid container direction="column" className={classes.grid}>
@@ -44,7 +44,7 @@ const BookSitter = (): JSX.Element => {
             </Grid>
             <Typography className={classes.dropOffLabel}>DROP-OFF</Typography>
             <Grid item className={classes.dropOff}>
-            <TextField
+              <TextField
                 id="datetime-local"
                 type="datetime-local"
                 className={classes.dropInText}
@@ -54,7 +54,9 @@ const BookSitter = (): JSX.Element => {
                 }}
               />
             </Grid>
-            <Grid item className={classes.buttonGrid}><Button className={classes.button} >SEND REQUEST</Button></Grid>
+            <Grid item className={classes.buttonGrid}>
+              <Button className={classes.button}>SEND REQUEST</Button>
+            </Grid>
           </Grid>
         </form>
       </Paper>
