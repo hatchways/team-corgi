@@ -1,5 +1,6 @@
-import { Grid, Paper, CircularProgress, Typography, Button } from '@material-ui/core';
+import { Grid, Paper, CircularProgress, Typography, Button, Avatar } from '@material-ui/core';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import { useState } from 'react';
 
 import Sidebar from '../Sidebar/SideBar';
 import useStyles from './useStyles';
@@ -13,9 +14,25 @@ const ProfilePhoto = (): JSX.Element => {
   const { loggedInUser } = useAuth();
   const history = useHistory();
 
+  const [previewSource, setPreviewSource] = useState('');
+  const [fileInputState, setFileInputState] = useState('');
+  const [selectedFile, setSelectedFile] = useState('');
+
   const handleUpload = (event: any) => {
     event.preventDefault();
-    if (event.target.files instanceof FileList) uploadPictureRequest(event.target.files[0]);
+    const file = event.target.files[0];
+    previewFile(file);
+    uploadPictureRequest(previewSource);
+  };
+  const previewFile = (file: any) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      if (reader.result) {
+        const result: string = reader.result as string;
+        setPreviewSource(result);
+      }
+    };
   };
 
   if (loggedInUser === undefined) return <CircularProgress />;
@@ -34,13 +51,17 @@ const ProfilePhoto = (): JSX.Element => {
           <Grid container justify="center" className={classes.main}>
             <Grid container alignItems="center" direction="column" className={classes.subMain}>
               <Typography className={classes.title}>Profile Photo</Typography>
-              <AvatarDisplay loggedIn user={loggedInUser} className={classes.displayPic} />
+              {previewSource ? (
+                <Avatar src={previewSource} className={classes.displayPic} />
+              ) : (
+                <AvatarDisplay loggedIn user={loggedInUser} className={classes.displayPic} />
+              )}
               <Typography className={classes.explanation}>
                 Be sure to use a photo that clearly shows your face
               </Typography>
               <Button color="primary" variant="outlined" className={classes.buttonUpload} component="label">
                 Upload a file from your device
-                <input type="file" hidden onChange={handleUpload} />
+                <input type="file" hidden onChange={handleUpload} value={fileInputState} />
               </Button>
               <Button className={classes.buttonDelete}>
                 <DeleteOutlineIcon />

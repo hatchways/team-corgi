@@ -6,14 +6,12 @@ const asyncHandler = require("express-async-handler");
 // @route POST /profilePic
 // Upload a new pic
 exports.uploadPic = asyncHandler(async (req, res, next) => {
-  const fd = new FormData();
-  const file = req.file;
-  if (!file) {
-    res.status(404);
-    throw new Error("Cannot find picture.");
+  try {
+    const fileStr = req.body.data;
+    console.log(fileStr);
+  } catch (error) {
+    console.log(error);
   }
-  fd.append("image", file, file.name);
-  res.status(201).json({ success: fd });
 });
 
 // @route DELETE /profilePic

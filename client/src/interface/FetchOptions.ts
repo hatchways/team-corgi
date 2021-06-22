@@ -11,7 +11,7 @@ export interface FetchFormOptions {
   headers?: {
     'Content-Type': string;
   };
-  body?: FormData;
-  file?: Express.Multer.File;
+  body?: string;
+  file?: string;
   credentials?: RequestCredentials;
 }
