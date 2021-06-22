@@ -1,7 +1,7 @@
 const asyncHandler = require('express-async-handler');
 const Notifications = require('../models/Notifications');
 
-exports.getAllnotifications = asyncHandler(async(req, res) => {
+exports.getAllNotifications = asyncHandler(async(req, res) => {
     const userId = req.params.id;
     const notifications = await Notifications.find({
         receiver: userId,
@@ -26,13 +26,14 @@ exports.readNotification = asyncHandler(async(req, res) => {
 });
 
 exports.createNotification = (async(req, res) => {
-    const notification = req.body;
-    const doc = await Notifications.insertMany({...notification, createdAt: Date.now() });
-    if (!doc) {
-        res.status(500);
-        throw new Error('Internal server Error');
-    }
-    res.status(200).json({ doc });
+    const request = req.body;
+    const notification = await new Notifications({...request, createdAt: Date.now() });
+    notification.save((err, not) => {
+        if (err) {
+            return console.error(err);
+        }
+        res.status(201).json({ notification });
+    })
 
 });
 
