@@ -20,7 +20,7 @@ const BookSitter = (): JSX.Element => {
   const { loggedInUser } = useAuth();
 
   return (
-    <Card className={classes.mainCard} elevation={5}>
+    <Card className={classes.mainCard}>
       <form className={classes.form}>
         <Grid container direction="column" className={classes.grid}>
           <Grid item className={classes.price}>

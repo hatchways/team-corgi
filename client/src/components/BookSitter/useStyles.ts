@@ -11,7 +11,8 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       marginLeft: '2rem',
       marginRight: '2rem',
-      padding: '20px',
+      padding: '65px',
+      boxShadow: 'rgba(0, 0, 0, 0.15) 0px 0px 10px 0px;',
     },
     grid: {
       flex: 1,
@@ -21,6 +22,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     price: {
       textAlign: 'center',
+      paddingBottom: '20px',
     },
     stars: {
       marginTop: '5px',

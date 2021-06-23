@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flex: 1,
       marginLeft: '2rem',
       marginRight: '2rem',
+      boxShadow: 'rgba(0, 0, 0, 0.15) 0px 0px 10px 0px;',
     },
     cardMedia: {
       objectFit: 'cover',
@@ -29,11 +30,12 @@ const useStyles = makeStyles((theme: Theme) =>
       textAlign: 'center',
     },
     avatar: {
-      width: '6rem',
-      height: '6rem',
+      width: '150px',
+      height: '150px',
       margin: '4px',
     },
     name: {
+      marginTop: '40px',
       fontWeight: 700,
       fontSize: 24,
     },
@@ -43,6 +45,12 @@ const useStyles = makeStyles((theme: Theme) =>
     location: {
       color: 'gray',
       marginTop: '2rem',
+      position: 'relative',
+    },
+    icon: {
+      position: 'absolute',
+      left: '0px',
+      bottom: '0',
     },
     cardContent: {},
     contentTypography: {

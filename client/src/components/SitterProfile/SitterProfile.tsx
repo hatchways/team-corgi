@@ -46,7 +46,7 @@ const SitterProfile = (): JSX.Element => {
   ];
 
   return (
-    <Card className={classes.mainCard} elevation={5}>
+    <Card className={classes.mainCard} elevation={0}>
       <CardMedia className={classes.cardMedia} image={house} />
 
       <Paper elevation={2} className={classes.avatarPaper}>
@@ -61,7 +61,7 @@ const SitterProfile = (): JSX.Element => {
         </Grid>
         <Grid item className={classes.gridItem}>
           <Typography className={classes.location}>
-            <LocationOnIcon color="primary"></LocationOnIcon>Toronto, Ontario
+            <LocationOnIcon className={classes.icon} color="primary"></LocationOnIcon>Toronto, Ontario
           </Typography>
         </Grid>
       </Grid>
