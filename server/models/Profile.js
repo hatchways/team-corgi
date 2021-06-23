@@ -1,33 +1,57 @@
 const mongoose = require("mongoose");
 
 const profileSchema = new mongoose.Schema({
-    firstName: {
-        type: String,
-        required: true,
-    },
-    lastName: {
-        type: String,
-        required: true,
-    },
-    address: {
-        type: String,
-        required: true,
-    },
-    city: String,
-    phoneNumber: Number,
-    profilePic: String,
-    aboutMe: String,
-    gender: String,
-    isSitter: {
+
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+  },
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
+    type: String,
+    required: true,
+  },
+  address: {
+    type: String,
+    required: true,
+  },
+  city: String,
+  phoneNumber: Number,
+  profilePic: String,
+  aboutMe: String,
+  gender: String,
+  isSitter: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  availability: [
+    {
+      day: String,
+      morning: {
         type: Boolean,
-        required: true,
-        default: false,
+        default: true,
+      },
+      afternoon: {
+        type: Boolean,
+        default: true,
+      },
+      evening: {
+        type: Boolean,
+        default: true,
+      },
+      night: {
+        type: Boolean,
+        default: true,
+      },
     },
-    availability: [{
-        start: Date,
-        end: Date,
-    }, ],
-    wage: Number,
+  ],
+
+  wage: Number,
+
 });
 
 module.exports = Profile = mongoose.model("profile", profileSchema);
