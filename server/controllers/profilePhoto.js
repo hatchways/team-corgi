@@ -6,14 +6,11 @@ const asyncHandler = require("express-async-handler");
 // Upload a new pic
 exports.uploadPic = asyncHandler(async (req, res, next) => {
   try {
-    const file = req.body;
-    const fileStr = JSON.stringify({ file });
-    const uploadedResponse = await cloudinary.uploader.unsigned_upload(
-      fileStr,
-      {
-        upload_preset: "dev-setups",
-      }
-    );
+    const fileStr = req.body.pics;
+    const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
+      upload_preset: "dev_setups",
+    });
+    console.log(uploadedResponse);
     res.json({ msg: "Things definitely happening" });
   } catch (error) {
     console.log(error);
