@@ -48,48 +48,45 @@ const SitterProfile = (): JSX.Element => {
   return (
     <Card className={classes.mainCard} elevation={5}>
       <CardMedia className={classes.cardMedia} image={house} />
-      <Paper className={classes.mainPaper} elevation={3}>
-        <Paper elevation={2} className={classes.avatarPaper}>
-          <AvatarDisplay loggedIn user={loggedInUser} className={classes.avatar} />
-        </Paper>
-        <Grid container direction="column" alignContent="center">
-          <Grid item className={classes.firstGridItem}>
-            <Typography className={classes.name}>Norma Byers</Typography>
-          </Grid>
-          <Grid item className={classes.gridItem}>
-            <Typography className={classes.subtitle}>Loving Pet Sitter</Typography>
-          </Grid>
-          <Grid item className={classes.gridItem}>
-            <Typography className={classes.location}>
-              <LocationOnIcon color="primary"></LocationOnIcon>Toronto, Ontario
+
+      <Paper elevation={2} className={classes.avatarPaper}>
+        <AvatarDisplay loggedIn user={loggedInUser} className={classes.avatar} />
+      </Paper>
+      <Grid container direction="column" alignContent="center">
+        <Grid item className={classes.firstGridItem}>
+          <Typography className={classes.name}>Norma Byers</Typography>
+        </Grid>
+        <Grid item className={classes.gridItem}>
+          <Typography className={classes.subtitle}>Loving Pet Sitter</Typography>
+        </Grid>
+        <Grid item className={classes.gridItem}>
+          <Typography className={classes.location}>
+            <LocationOnIcon color="primary"></LocationOnIcon>Toronto, Ontario
+          </Typography>
+        </Grid>
+      </Grid>
+
+      <CardContent className={classes.cardContent}>
+        <Grid container direction="column">
+          <Typography className={classes.contentTypography} variant="h4">
+            About me
+          </Typography>
+          <Grid item className={classes.profileText}>
+            <Typography>
+              Big Body Of TextBig Body Of TextBig Body Of TextBig Body Of TextBig Body Of TextBig Body Of TextBig Bod
+              Big Body Of TextBig Body Of TextBig Body Of TextBig Body Of TextBig Body Of TextBig Body Of TextBig Bod
+              Big Body Of TextBig Body Of TextBig Body Of TextBig Body Of TextBig Body Of TextBig Body Of TextBig Bod
             </Typography>
           </Grid>
+          <GridList className={classes.gridList} cols={4}>
+            {tileData.map((tile) => (
+              <GridListTile key={tile.img}>
+                <img className={classes.img} src={tile.img} alt={tile.title} />
+              </GridListTile>
+            ))}
+          </GridList>
         </Grid>
-
-        <CardContent className={classes.cardContent}>
-          <Grid container direction="column">
-            <Grid item>
-              <Typography className={classes.contentTypography} variant="h4">
-                About me
-              </Typography>
-            </Grid>
-            <Grid item className={classes.profileText}>
-              <Typography>
-                Big Body Of TextBig Body Of TextBig Body Of TextBig Body Of TextBig Body Of TextBig Body Of TextBig Bod
-                Big Body Of TextBig Body Of TextBig Body Of TextBig Body Of TextBig Body Of TextBig Body Of TextBig Bod
-                Big Body Of TextBig Body Of TextBig Body Of TextBig Body Of TextBig Body Of TextBig Body Of TextBig Bod
-              </Typography>
-            </Grid>
-            <GridList className={classes.gridList} cols={4}>
-              {tileData.map((tile) => (
-                <GridListTile key={tile.img}>
-                  <img className={classes.img} src={tile.img} alt={tile.title} />
-                </GridListTile>
-              ))}
-            </GridList>
-          </Grid>
-        </CardContent>
-      </Paper>
+      </CardContent>
     </Card>
   );
 };

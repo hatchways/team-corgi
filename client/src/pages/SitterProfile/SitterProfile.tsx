@@ -5,8 +5,6 @@ import BookSitter from '../../components/BookSitter/BookSitter';
 
 export default function Register(): JSX.Element {
   const classes = useStyles();
-  //const { updateLoginContext } = useAuth();
-  //const { updateSnackBarMessage } = useSnackBar();
 
   return (
     <Grid container direction="row">

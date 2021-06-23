@@ -15,11 +15,6 @@ const useStyles = makeStyles((theme: Theme) =>
       minHeight: '300px',
       flex: 1,
     },
-    mainPaper: {
-      flex: 1,
-      margin: 0,
-      padding: '20px',
-    },
     avatarPaper: {
       position: 'absolute',
       left: '50%',

@@ -11,13 +11,10 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'flex',
       marginLeft: '2rem',
       marginRight: '2rem',
+      padding: '20px',
     },
     grid: {
       flex: 1,
-    },
-    paper: {
-      flex: 1,
-      padding: '20px',
     },
     form: {
       flex: 1,
