@@ -1,16 +1,23 @@
 const mongoose = require("mongoose");
 const multer = require("multer");
+const { cloudinary } = require("../utils/cloudinary");
 
 const asyncHandler = require("express-async-handler");
 
 // @route POST /profilePic
 // Upload a new pic
 exports.uploadPic = asyncHandler(async (req, res, next) => {
+  console.log("things happening");
   try {
     const fileStr = req.body.data;
-    console.log(fileStr);
+    const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
+      upload_preset: "dev-setups",
+    });
+    console.log(uploadedResponse);
+    res.json({ msg: "Things definitely happening" });
   } catch (error) {
     console.log(error);
+    res.status(500).json({ err: "Something went wrong" });
   }
 });
 

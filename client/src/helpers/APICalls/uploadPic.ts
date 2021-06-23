@@ -5,10 +5,11 @@ const uploadPictureRequest = async (file: string): Promise<AuthApiData> => {
   const fetchOptions: FetchFormOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ data: file, name: 'newPic' }),
+    body: JSON.stringify({ data: file }),
     credentials: 'include',
   };
-  return await fetch(`/profile/pics/upload`, fetchOptions)
+  console.log(file);
+  return await fetch(`/api/pic/upload`, fetchOptions)
     .then((res) => res.json())
     .catch(() => ({
       error: { message: 'Could not upload picture, please try again.' },

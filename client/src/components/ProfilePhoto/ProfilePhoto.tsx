@@ -1,6 +1,6 @@
 import { Grid, Paper, CircularProgress, Typography, Button, Avatar } from '@material-ui/core';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 import Sidebar from '../Sidebar/SideBar';
 import useStyles from './useStyles';
@@ -15,24 +15,23 @@ const ProfilePhoto = (): JSX.Element => {
   const history = useHistory();
 
   const [previewSource, setPreviewSource] = useState('');
-  const [fileInputState, setFileInputState] = useState('');
-  const [selectedFile, setSelectedFile] = useState('');
 
-  const handleUpload = (event: any) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
+    if (!(event.target.files instanceof FileList)) return;
     const file = event.target.files[0];
-    previewFile(file);
-    uploadPictureRequest(previewSource);
-  };
-  const previewFile = (file: any) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       if (reader.result) {
         const result: string = reader.result as string;
-        setPreviewSource(result);
+        uploadPictureRequest('result');
+        previewFile(result);
       }
     };
+  };
+  const previewFile = (file: string) => {
+    setPreviewSource(file);
   };
 
   if (loggedInUser === undefined) return <CircularProgress />;
@@ -61,7 +60,7 @@ const ProfilePhoto = (): JSX.Element => {
               </Typography>
               <Button color="primary" variant="outlined" className={classes.buttonUpload} component="label">
                 Upload a file from your device
-                <input type="file" hidden onChange={handleUpload} value={fileInputState} />
+                <input type="file" hidden onChange={handleInputChange} />
               </Button>
               <Button className={classes.buttonDelete}>
                 <DeleteOutlineIcon />
