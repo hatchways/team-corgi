@@ -13,10 +13,12 @@ const notificationSchema = new mongoose.Schema({
     sender: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
+        ref: 'Profile'
     },
     receiver: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
+        ref: 'Profile'
     },
     title: {
         type: String,
