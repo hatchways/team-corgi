@@ -11,7 +11,7 @@ export interface FetchFormOptions {
   headers?: {
     'Content-Type': string;
   };
-  body?: string;
-  file?: string;
+  body?: FormData;
+  file?: FormData;
   credentials?: RequestCredentials;
 }

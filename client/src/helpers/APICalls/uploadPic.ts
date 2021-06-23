@@ -1,12 +1,10 @@
 import { AuthApiData } from '../../interface/AuthApiData';
 import { FetchFormOptions } from '../../interface/FetchOptions';
 
-const uploadPictureRequest = async (file: string): Promise<AuthApiData> => {
+const uploadPictureRequest = async (file: FormData): Promise<AuthApiData> => {
   const fetchOptions: FetchFormOptions = {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ data: file }),
-    credentials: 'include',
+    body: file,
   };
   console.log(file);
   return await fetch(`/api/pic/upload`, fetchOptions)

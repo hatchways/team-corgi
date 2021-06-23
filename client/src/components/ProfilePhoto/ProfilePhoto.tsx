@@ -25,7 +25,9 @@ const ProfilePhoto = (): JSX.Element => {
     reader.onloadend = () => {
       if (reader.result) {
         const result: string = reader.result as string;
-        uploadPictureRequest('result');
+        const fd = new FormData();
+        fd.append('pics', result);
+        uploadPictureRequest(fd);
         previewFile(result);
       }
     };
