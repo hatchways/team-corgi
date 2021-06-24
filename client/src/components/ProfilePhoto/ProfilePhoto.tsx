@@ -1,6 +1,6 @@
 import { Grid, Paper, CircularProgress, Typography, Button, Avatar } from '@material-ui/core';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Sidebar from '../Sidebar/SideBar';
 import useStyles from './useStyles';
@@ -35,6 +35,21 @@ const ProfilePhoto = (): JSX.Element => {
   const previewFile = (file: string) => {
     setPreviewSource(file);
   };
+
+  const loadProfilePic = async () => {
+    try {
+      const res = await fetch('/api/pic');
+      const data = await res.json();
+      console.log(data);
+      setPreviewSource(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    loadProfilePic();
+  }, []);
 
   if (loggedInUser === undefined) return <CircularProgress />;
   if (!loggedInUser) {
