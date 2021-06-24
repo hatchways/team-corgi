@@ -17,6 +17,7 @@ import Payment from './components/Payment/Payment';
 import Availability from './components/Availability/Availability';
 import Security from './components/Security/Security';
 import Settings from './components/Settings/Settings';
+import ManageBookings from './components/ManageBookings/ManageBookings';
 
 function App(): JSX.Element {
   return (
@@ -30,13 +31,14 @@ function App(): JSX.Element {
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/editprofile" component={EditProfile}></Route>
-                <Route exact path="/profilephoto" component={ProfilePhoto} />
                 <Route exact path="/payment" component={Payment} />
                 <Route exact path="/availability" component={Availability} />
                 <Route exact path="/security" component={Security} />
                 <Route exact path="/settings" component={Settings} />
+                <Route exact path="/profile/pics" component={ProfilePhoto} />
+                <ProtectedRoutes exact path="/profile/manageBookings" component={ManageBookings} />
                 <Route exact path="/dashboard">
-                  <Dashboard />
+                  <ProfilePhoto />
                 </Route>
                 <Route path="*">
                   <Redirect to="/login" />
