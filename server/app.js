@@ -8,6 +8,7 @@ const connectDB = require("./db");
 const { join } = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const cors = require('cors');
 
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
@@ -43,6 +44,7 @@ app.use((req, res, next) => {
     req.io = io;
     next();
 });
+app.use(cors());
 
 app.use("/auth", authRouter);
 app.use("/users", userRouter);

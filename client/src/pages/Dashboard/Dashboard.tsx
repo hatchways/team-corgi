@@ -59,7 +59,7 @@ export default function Dashboard(): JSX.Element {
                 {/* <Box p={2}>
                   <Typography>The content of the Popover.</Typography>
                 </Box> */}
-                <Notification></Notification>
+                <Notification username={loggedInUser}></Notification>
               </Popover>
             </div>
           )}
