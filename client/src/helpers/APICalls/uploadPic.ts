@@ -13,5 +13,4 @@ const uploadPictureRequest = async (file: FormData): Promise<AuthApiData> => {
       error: { message: 'Could not upload picture, please try again.' },
     }));
 };
-
 export default uploadPictureRequest;

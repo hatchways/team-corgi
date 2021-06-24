@@ -1,21 +1,32 @@
+const mongoose = require("mongoose");
 const { cloudinary } = require("../utils/cloudinary");
+const Profile = require("../models/Profile");
 
 const asyncHandler = require("express-async-handler");
 
 // @route POST /profilePic
 // Upload a new pic
 exports.uploadPic = asyncHandler(async (req, res, next) => {
+  const file = req.file;
   try {
     const fileStr = req.body.pics;
     const uploadedResponse = await cloudinary.uploader.upload(fileStr, {
       upload_preset: "dev_setups",
     });
-    console.log(uploadedResponse);
-    res.json({ msg: "Things definitely happening" });
+    const profile = await Profile.findById(req.id);
+    res.json({ msg: uploadedResponse.url });
   } catch (error) {
     console.log(error);
     res.status(500).json({ err: "Something went wrong" });
   }
+});
+
+exports.getPic = asyncHandler(async (req, res, next) => {
+  const { resources } = await cloudinary.search
+    .expression("folder:dev_setups")
+    .execute();
+  const imgUrl = resources.map((file) => file.url);
+  res.send(imgUrl);
 });
 
 // @route DELETE /profilePic

@@ -3,8 +3,10 @@ const router = express.Router();
 const multer = require("multer");
 
 const protect = require("../middleware/auth");
-const { uploadPic, deletePic } = require("../controllers/profilePhoto");
+const { uploadPic, deletePic, getPic } = require("../controllers/profilePhoto");
 
+router.route("/pic").post(protect, uploadPic);
+router.route("/pic").delete(protect, deletePic);
 const storage = multer.memoryStorage({
   destination: function (req, file, callback) {
     callback(null, "");
@@ -20,6 +22,7 @@ const multiUpload = multer({ storage: storage }).array(
 );
 
 router.route("/upload").post(multiUpload, uploadPic);
+router.route("/").get(getPic);
 router.route("/:id").delete(protect, deletePic);
 
 module.exports = router;
