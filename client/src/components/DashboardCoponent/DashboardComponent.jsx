@@ -44,7 +44,8 @@ const useStyles = makeStyles({
     },
   },
   searchIcon: {
-    padding: '0 14px',
+    margin: '0 5px',
+    color: red[500],
   },
   dateText: {
     fontSize: '14px',
@@ -81,7 +82,7 @@ export default function Dashboardcomponent() {
           <Paper variant="outlined" className={classes.paper} elevation="1">
             <Grid container direction="row" className={classes.inputBoxContainer} justify="center">
               <Grid xs={7} item className={classes.inputBox}>
-                <SearchIcon className={classes.searchIcon} style={{ color: red[500] }} />
+                <SearchIcon className={classes.searchIcon} />
                 <input className={classes.input} placeholder="Toronto, Ontario" />
               </Grid>
               <Grid item className={classes.dataRangeContainer} xs={5}>
