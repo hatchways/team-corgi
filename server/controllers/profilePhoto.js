@@ -14,19 +14,11 @@ exports.uploadPic = asyncHandler(async (req, res, next) => {
       upload_preset: "dev_setups",
     });
     const profile = await Profile.findById(req.id);
-    res.json({ msg: uploadedResponse.url });
+    res.json(uploadedResponse.url);
   } catch (error) {
     console.log(error);
     res.status(500).json({ err: "Something went wrong" });
   }
-});
-
-exports.getPic = asyncHandler(async (req, res, next) => {
-  const { resources } = await cloudinary.search
-    .expression("folder:dev_setups")
-    .execute();
-  const imgUrl = resources.map((file) => file.url);
-  res.send(imgUrl);
 });
 
 // @route DELETE /profilePic
@@ -39,10 +31,10 @@ exports.deletePic = asyncHandler(async (req, res, next) => {
     throw new Error("Cannot find profile.");
   }
   try {
-    Profile.findByIdAndDelete(id);
+    Profile.findByIdAndUpdate(id, { profilePic: "" });
     res.status(200);
   } catch (error) {
     res.status(500);
-    throw new Error("Could not delete profile.");
+    throw new Error("Could not delete Image.");
   }
 });

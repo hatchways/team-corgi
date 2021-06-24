@@ -14,7 +14,7 @@ const ProfilePhoto = (): JSX.Element => {
   const { loggedInUser } = useAuth();
   const history = useHistory();
 
-  const [previewSource, setPreviewSource] = useState('');
+  const [url, setUrl] = useState('');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
@@ -27,30 +27,19 @@ const ProfilePhoto = (): JSX.Element => {
         const result: string = reader.result as string;
         const fd = new FormData();
         fd.append('pics', result);
-        uploadPictureRequest(fd);
-        previewFile(result);
+        uploadPictureRequest(fd).then((data) => {
+          if (data) {
+            const url = data as string;
+            setUrl(url);
+          }
+        });
       }
     };
   };
-  const previewFile = (file: string) => {
-    setPreviewSource(file);
+
+  const handleDelete = () => {
+    setUrl('');
   };
-
-  const loadProfilePic = async () => {
-    try {
-      const res = await fetch('/api/pic');
-      const data = await res.json();
-      console.log(data);
-      setPreviewSource(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    loadProfilePic();
-  }, []);
-
   if (loggedInUser === undefined) return <CircularProgress />;
   if (!loggedInUser) {
     history.push('/login');
@@ -67,8 +56,8 @@ const ProfilePhoto = (): JSX.Element => {
           <Grid container justify="center" className={classes.main}>
             <Grid container alignItems="center" direction="column" className={classes.subMain}>
               <Typography className={classes.title}>Profile Photo</Typography>
-              {previewSource ? (
-                <Avatar src={previewSource} className={classes.displayPic} />
+              {url ? (
+                <Avatar src={url} className={classes.displayPic} />
               ) : (
                 <AvatarDisplay loggedIn user={loggedInUser} className={classes.displayPic} />
               )}
@@ -79,7 +68,7 @@ const ProfilePhoto = (): JSX.Element => {
                 Upload a file from your device
                 <input type="file" hidden onChange={handleInputChange} />
               </Button>
-              <Button className={classes.buttonDelete}>
+              <Button className={classes.buttonDelete} onClick={handleDelete}>
                 <DeleteOutlineIcon />
                 <Typography className={classes.textDelete}>Delete photo</Typography>
               </Button>

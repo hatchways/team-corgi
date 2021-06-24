@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 
 const protect = require("../middleware/auth");
-const { uploadPic, deletePic, getPic } = require("../controllers/profilePhoto");
+const { uploadPic, deletePic } = require("../controllers/profilePhoto");
 
 router.route("/pic").post(protect, uploadPic);
 router.route("/pic").delete(protect, deletePic);
@@ -22,7 +22,6 @@ const multiUpload = multer({ storage: storage }).array(
 );
 
 router.route("/upload").post(multiUpload, uploadPic);
-router.route("/").get(getPic);
 router.route("/:id").delete(protect, deletePic);
 
 module.exports = router;
