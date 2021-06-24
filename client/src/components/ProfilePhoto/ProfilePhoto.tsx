@@ -1,6 +1,6 @@
 import { Grid, Paper, CircularProgress, Typography, Button, Avatar } from '@material-ui/core';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import Sidebar from '../Sidebar/SideBar';
 import useStyles from './useStyles';
