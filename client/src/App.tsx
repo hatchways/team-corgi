@@ -5,6 +5,8 @@ import Login from './pages/Login/Login';
 import Signup from './pages/SignUp/SignUp';
 import LandingPage from './pages/LandingPage/LandingPage';
 import Dashboard from './pages/Dashboard/Dashboard';
+import SitterProfile from './pages/SitterProfile/SitterProfile';
+
 import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
@@ -17,7 +19,6 @@ import Payment from './components/Payment/Payment';
 import Availability from './components/Availability/Availability';
 import Security from './components/Security/Security';
 import Settings from './components/Settings/Settings';
-import ManageBookings from './components/ManageBookings/ManageBookings';
 
 function App(): JSX.Element {
   return (
@@ -36,9 +37,9 @@ function App(): JSX.Element {
                 <Route exact path="/security" component={Security} />
                 <Route exact path="/settings" component={Settings} />
                 <Route exact path="/profile/pics" component={ProfilePhoto} />
-                <ProtectedRoutes exact path="/profile/manageBookings" component={ManageBookings} />
+                <Route exact path="/profile" component={SitterProfile} />
                 <Route exact path="/dashboard">
-                  <ProfilePhoto />
+                  <Dashboard />
                 </Route>
                 <Route path="*">
                   <Redirect to="/login" />
