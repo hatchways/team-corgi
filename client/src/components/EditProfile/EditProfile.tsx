@@ -24,7 +24,7 @@ const EditProfile = (props: Props): JSX.Element => {
     { firstName, lastName, email, phone, city, description }: Props,
     { setSubmitting }: FormikHelpers<Props>,
   ) => {
-    const id = '60d10819eefb984ce4f30521';
+    const id = props._id;
     if (!id) {
       setSubmitting(false);
       updateSnackBarMessage('Could not find profile');
