@@ -39,7 +39,7 @@ function App(): JSX.Element {
                 <Route exact path="/profile/pics" component={ProfilePhoto} />
                 <Route exact path="/profile" component={SitterProfile} />
                 <Route exact path="/dashboard">
-                  <Dashboard />
+                  <EditProfile />
                 </Route>
                 <Route path="*">
                   <Redirect to="/login" />
