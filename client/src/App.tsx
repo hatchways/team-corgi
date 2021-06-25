@@ -5,6 +5,8 @@ import Login from './pages/Login/Login';
 import Signup from './pages/SignUp/SignUp';
 import LandingPage from './pages/LandingPage/LandingPage';
 import Dashboard from './pages/Dashboard/Dashboard';
+import SitterProfile from './pages/SitterProfile/SitterProfile';
+
 import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
@@ -35,6 +37,7 @@ function App(): JSX.Element {
                 <Route exact path="/availability" component={Availability} />
                 <Route exact path="/security" component={Security} />
                 <Route exact path="/settings" component={Settings} />
+                <Route exact path="/profile" component={SitterProfile} />
                 <Route exact path="/dashboard">
                   <Dashboard />
                 </Route>

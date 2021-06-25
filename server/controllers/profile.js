@@ -6,7 +6,7 @@ const Profile = require("../models/Profile");
 
 // @route POST /profile
 // Add a new profile
-exports.newProfile = asyncHandler(async (req, res, next) => {
+exports.createProfile = asyncHandler(async (req, res, next) => {
   const profile = req.body;
   const newProfile = new Profile({ ...profile });
 
