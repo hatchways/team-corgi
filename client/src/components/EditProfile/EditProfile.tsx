@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import editProfile from '../../helpers/APICalls/editProfile';
 
 interface Props {
+  _id?: string;
   firstName?: string;
   lastName?: string;
   email?: string;
@@ -23,12 +24,20 @@ const EditProfile = (props: Props): JSX.Element => {
     { firstName, lastName, email, phone, city, description }: Props,
     { setSubmitting }: FormikHelpers<Props>,
   ) => {
-    editProfile(firstName, lastName, email, phone, city, description).then((data) => {
+    const id = '60d10819eefb984ce4f30521';
+    if (!id) {
+      setSubmitting(false);
+      updateSnackBarMessage('Could not find profile');
+      return;
+    }
+    const profile = { firstName, lastName, email, phone, city, description };
+    editProfile(id, profile).then((data) => {
       if (data.error) {
         console.error({ error: data.error.message });
         setSubmitting(false);
         updateSnackBarMessage(data.error.message);
       } else if (data.success) {
+        setSubmitting(false);
         alert('Profile updated');
       } else {
         // For an unknown issue
@@ -170,6 +179,12 @@ const EditProfile = (props: Props): JSX.Element => {
                   </Grid>
                   <Grid item xs={6} className={classes.formInputField}>
                     <TextField
+                      id="description"
+                      name="description"
+                      helperText={touched.description ? errors.description : ''}
+                      error={touched.description && Boolean(errors.description)}
+                      value={values.description}
+                      onChange={handleChange}
                       size="small"
                       variant="outlined"
                       multiline
