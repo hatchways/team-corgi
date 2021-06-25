@@ -6,7 +6,6 @@ const uploadPictureRequest = async (file: FormData): Promise<AuthApiData> => {
     method: 'POST',
     body: file,
   };
-  console.log(file);
   return await fetch(`/api/pic/upload`, fetchOptions)
     .then((res) => res.json())
     .catch(() => ({

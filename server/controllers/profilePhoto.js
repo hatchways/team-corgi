@@ -16,7 +16,6 @@ exports.uploadPic = asyncHandler(async (req, res, next) => {
     const profile = await Profile.findById(req.id);
     res.json(uploadedResponse.url);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ err: "Something went wrong" });
   }
 });
@@ -31,7 +30,7 @@ exports.deletePic = asyncHandler(async (req, res, next) => {
     throw new Error("Cannot find profile.");
   }
   try {
-    Profile.findByIdAndUpdate(id, { profilePic: "" });
+    Profile.findByIdAndUpdate(id, { profilePhoto: "" });
     res.status(200);
   } catch (error) {
     res.status(500);
