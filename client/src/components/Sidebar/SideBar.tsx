@@ -23,7 +23,7 @@ const Sidebar = (): JSX.Element => {
         <ListItem button component={Link} to="/editprofile">
           <ListItemText primary="Edit Profile" className={classes.listItem}></ListItemText>
         </ListItem>
-        <ListItem button component={Link} to="/profilephoto">
+        <ListItem button component={Link} to="/profile/pics">
           <ListItemText primary="Profile Photo" className={classes.listItem}></ListItemText>
         </ListItem>
         <ListItem button component={Link} to="/availability">

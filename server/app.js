@@ -12,9 +12,9 @@ const cors = require('cors');
 
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
+const profilePhoto = require("./routes/profilePhoto");
 const notificationRouter = require('./routes/notifications');
 const profileRouter = require("./routes/profile");
-
 
 const { json, urlencoded } = express;
 
@@ -39,6 +39,8 @@ app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(join(__dirname, "public")));
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
 app.use((req, res, next) => {
     req.io = io;
@@ -48,8 +50,8 @@ app.use(cors());
 
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
+app.use("/api/pic", profilePhoto);
 app.use('/notifications', notificationRouter);
-
 app.use("/profile", profileRouter);
 
 if (process.env.NODE_ENV === "production") {
