@@ -31,12 +31,12 @@ function App(): JSX.Element {
                 <Route exact path="/landingpage" component={LandingPage} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
-                <Route exact path="/editprofile" component={EditProfile}></Route>
-                <Route exact path="/profilephoto" component={ProfilePhoto} />
+                <Route exact path="/editprofile" component={EditProfile} />
                 <Route exact path="/payment" component={Payment} />
                 <Route exact path="/availability" component={Availability} />
                 <Route exact path="/security" component={Security} />
                 <Route exact path="/settings" component={Settings} />
+                <Route exact path="/profile/pics" component={ProfilePhoto} />
                 <Route exact path="/profile" component={SitterProfile} />
                 <Route exact path="/dashboard">
                   <Dashboard />
