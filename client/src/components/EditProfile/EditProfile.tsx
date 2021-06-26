@@ -33,7 +33,6 @@ const EditProfile = (props: Props): JSX.Element => {
     const profile = { firstName, lastName, email, phone, city, description };
     editProfile(id, profile).then((data) => {
       if (data.error) {
-        console.error({ error: data.error.message });
         setSubmitting(false);
         updateSnackBarMessage(data.error.message);
       } else if (data.success) {
@@ -51,7 +50,7 @@ const EditProfile = (props: Props): JSX.Element => {
   return (
     <Grid container>
       <Grid item xs={2}>
-        <Sidebar></Sidebar>
+        <Sidebar />
       </Grid>
       <Grid item xs={10} style={{ backgroundColor: '#FAFAFA' }}>
         <Paper elevation={3} className={classes.gridContainer}>
@@ -78,9 +77,9 @@ const EditProfile = (props: Props): JSX.Element => {
             {({ handleSubmit, handleChange, values, touched, errors, isSubmitting }) => (
               <form onSubmit={handleSubmit} noValidate>
                 <Grid container>
-                  <Grid item xs={2} md={2}></Grid>
+                  <Grid item xs={2} md={2} />
                   <Grid item xs={2} md={2} className={classes.formLabel}>
-                    FIRST NAME
+                    first name
                   </Grid>
                   <Grid item xs={6} md={6} className={classes.formInputField}>
                     <TextField
@@ -95,13 +94,13 @@ const EditProfile = (props: Props): JSX.Element => {
                       placeholder="First Name"
                       fullWidth
                       size={'small'}
-                    ></TextField>
+                    />
                   </Grid>
-                  <Grid item xs={2} md={2}></Grid>
+                  <Grid item xs={2} md={2} />
 
-                  <Grid item xs={2}></Grid>
+                  <Grid item xs={2} />
                   <Grid item xs={2} className={classes.formLabel}>
-                    LAST NAME
+                    last name
                   </Grid>
                   <Grid item xs={6} className={classes.formInputField}>
                     <TextField
@@ -116,13 +115,13 @@ const EditProfile = (props: Props): JSX.Element => {
                       variant="outlined"
                       placeholder="Last Name"
                       fullWidth
-                    ></TextField>
+                    />
                   </Grid>
-                  <Grid item xs={2}></Grid>
+                  <Grid item xs={2} />
 
-                  <Grid item xs={2}></Grid>
+                  <Grid item xs={2} />
                   <Grid item xs={2} className={classes.formLabel}>
-                    EMAIL ADDRESS
+                    email address
                   </Grid>
                   <Grid item xs={6} className={classes.formInputField}>
                     <TextField
@@ -137,24 +136,24 @@ const EditProfile = (props: Props): JSX.Element => {
                       variant="outlined"
                       placeholder="johndoe@gmail.com"
                       fullWidth
-                    ></TextField>
+                    />
                   </Grid>
-                  <Grid item xs={2}></Grid>
+                  <Grid item xs={2} />
 
-                  <Grid item xs={2}></Grid>
+                  <Grid item xs={2} />
                   <Grid item xs={2} className={classes.formLabel}>
-                    PHONE NUMBER
+                    phone number
                   </Grid>
                   <Grid item xs={6} className={classes.formInputField}>
                     <Button color="primary" variant="outlined" className={classes.buttonPhone}>
                       Add a phone number
                     </Button>
                   </Grid>
-                  <Grid item xs={2}></Grid>
+                  <Grid item xs={2} />
 
-                  <Grid item xs={2}></Grid>
+                  <Grid item xs={2} />
                   <Grid item xs={2} className={classes.formLabel}>
-                    CITY YOU LIVE IN
+                    city you live in
                   </Grid>
                   <Grid item xs={6} className={classes.formInputField}>
                     <TextField
@@ -169,13 +168,13 @@ const EditProfile = (props: Props): JSX.Element => {
                       variant="outlined"
                       placeholder="Toronto"
                       fullWidth
-                    ></TextField>
+                    />
                   </Grid>
-                  <Grid item xs={2}></Grid>
+                  <Grid item xs={2} />
 
                   <Grid item xs={1}></Grid>
                   <Grid item xs={3} className={classes.formLabel}>
-                    DESCRIBE YOURSELF
+                    describe yourself
                   </Grid>
                   <Grid item xs={6} className={classes.formInputField}>
                     <TextField
@@ -191,9 +190,9 @@ const EditProfile = (props: Props): JSX.Element => {
                       rows={4}
                       placeholder="About you"
                       fullWidth
-                    ></TextField>
+                    />
                   </Grid>
-                  <Grid item xs={2}></Grid>
+                  <Grid item xs={2} />
                 </Grid>
                 <Button color="primary" size="large" type="submit" variant="contained" className={classes.submitButton}>
                   {isSubmitting ? <CircularProgress size={23} style={{ color: 'white' }} /> : 'Submit'}
