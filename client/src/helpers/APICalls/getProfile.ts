@@ -1,12 +1,10 @@
 import { ProfileApiData } from '../../interface/AuthApiData';
 import { FetchOptions } from '../../interface/FetchOptions';
-import { Profile } from '../../interface/Profile';
 
-const editProfile = async (id: string, profile: Profile): Promise<ProfileApiData> => {
+const getUserProfile = async (id: string): Promise<ProfileApiData> => {
   const fetchOptions: FetchOptions = {
-    method: 'PATCH',
+    method: 'GET',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(profile),
     credentials: 'include',
   };
   return await fetch(`/profile/${id}`, fetchOptions)
@@ -16,4 +14,4 @@ const editProfile = async (id: string, profile: Profile): Promise<ProfileApiData
     }));
 };
 
-export default editProfile;
+export default getUserProfile;

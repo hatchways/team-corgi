@@ -1,16 +1,11 @@
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Paper from '@material-ui/core/Paper';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
+import { Paper, Box, Grid, CssBaseline, Typography, Button } from '@material-ui/core';
 import { FormikHelpers } from 'formik';
-import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import useStyles from './useStyles';
 import register from '../../helpers/APICalls/register';
 import SignUpForm from './SignUpForm/SignUpForm';
 import { useAuth } from '../../context/useAuthContext';
 import { useSnackBar } from '../../context/useSnackbarContext';
-import { Button } from '@material-ui/core';
 import login from '../../helpers/APICalls/login';
 import dogs from '../../Images/goldenRetrievers.jpg';
 import LandingPageBar from '../../components/LandingPageBar/LandingPageBar';
