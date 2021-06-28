@@ -25,22 +25,22 @@ export default function ManageProfile(): JSX.Element {
 
   const handleRoute = (path: string) => {
     switch (path) {
-      case '/manageprofile/editprofile':
+      case '/manage-profile/edit-profile':
         return <EditProfile _id={userId} profile={userProfile} />;
 
-      case '/manageprofile/profilephoto':
+      case '/manage-profile/profile-photo':
         return <ProfilePhoto />;
 
-      case '/manageprofile/payment':
+      case '/manage-profile/payment':
         return <Payment />;
 
-      case '/manageprofile/availability':
+      case '/manage-profile/availability':
         return <Availability />;
 
       case '/manageprofile/security':
         return <Security />;
 
-      case '/manageprofile/settings':
+      case '/manage-profile/settings':
         return <Settings />;
 
       default:
@@ -52,9 +52,9 @@ export default function ManageProfile(): JSX.Element {
     async function getProfileData() {
       if (userId)
         return await getUserProfile(userId).then((data) => {
-          if (!data?.success) {
-            setLoading(false);
-          } else setUserProfile(data.success.profile);
+          if (data?.success) {
+            setUserProfile(data.success.profile);
+          }
           setLoading(false);
         });
       else setLoading(false);
@@ -69,7 +69,7 @@ export default function ManageProfile(): JSX.Element {
       <Grid item xs={2}>
         <SideBar />
       </Grid>
-      <Grid item xs={10} style={{ backgroundColor: '#FAFAFA' }}>
+      <Grid item xs={10} className={classes.root}>
         <Paper elevation={3} className={classes.gridContainer}>
           {handleRoute(location.pathname)}
         </Paper>

@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   root: {
-    flex: 1,
+    backgroundColor: '#FAFAFA',
   },
   gridContainer: {
     margin: '5% 15% 0% 15%',

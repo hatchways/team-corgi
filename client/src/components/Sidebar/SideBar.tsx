@@ -20,22 +20,22 @@ const Sidebar = (): JSX.Element => {
     >
       <div className={classes.toolbar} />
       <List>
-        <ListItem button component={Link} to="/manageprofile/editprofile">
+        <ListItem button component={Link} to="/manage-profile/edit-profile">
           <ListItemText primary="Edit Profile" className={classes.listItem}></ListItemText>
         </ListItem>
-        <ListItem button component={Link} to="/manageprofile/profilephoto">
+        <ListItem button component={Link} to="/manage-profile/profile-photo">
           <ListItemText primary="Profile Photo" className={classes.listItem}></ListItemText>
         </ListItem>
-        <ListItem button component={Link} to="/manageprofile/availability">
+        <ListItem button component={Link} to="/manage-profile/availability">
           <ListItemText primary="Availability" className={classes.listItem}></ListItemText>
         </ListItem>
-        <ListItem button component={Link} to="/manageprofile/payment">
+        <ListItem button component={Link} to="/manage-profile/payment">
           <ListItemText primary="Payment" className={classes.listItem}></ListItemText>
         </ListItem>
-        <ListItem button component={Link} to="/manageprofile/security">
+        <ListItem button component={Link} to="/manage-profile/security">
           <ListItemText primary="Security" className={classes.listItem}></ListItemText>
         </ListItem>
-        <ListItem button component={Link} to="/manageprofile/settings">
+        <ListItem button component={Link} to="/manage-profile/settings">
           <ListItemText primary="Settings" className={classes.listItem}></ListItemText>
         </ListItem>
       </List>
