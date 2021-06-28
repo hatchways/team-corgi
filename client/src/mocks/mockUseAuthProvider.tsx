@@ -9,6 +9,8 @@ const MockUseAuthProvider: FunctionComponent = ({ children }) => {
         loggedInUser: mockLoggedInUser,
         updateLoginContext: jest.fn(),
         logout: jest.fn(),
+        userProfile: undefined,
+        notifications: [],
       }}
     >
       {children}

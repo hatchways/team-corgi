@@ -2,7 +2,7 @@ const asyncHandler = require('express-async-handler');
 const Notifications = require('../models/Notifications');
 
 exports.getAllNotifications = asyncHandler(async(req, res) => {
-    const receiverProfileId = req.body.profileId;
+    const receiverProfileId = req.params.id;
     const notifications = await Notifications.find({
         receiver: receiverProfileId,
     }).populate('sender');
@@ -39,8 +39,8 @@ exports.createNotification = (async(req, res) => {
 });
 
 exports.getUnreadNotifications = (async(req, res) => {
-    const receiverProfileId = req.body.profileId;
-    const notifications = await Notifications.find({ receiver: receiverProfileId, read: false });
+    const receiverProfileId = req.params.id;
+    const notifications = await Notifications.find({ receiver: receiverProfileId, read: false }).populate('sender');
     if (!notifications) {
         res.status(204);
         throw new Error('No notifications');
