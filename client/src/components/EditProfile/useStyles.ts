@@ -16,6 +16,7 @@ const useStyles = makeStyles(() => ({
     marginTop: '12px',
     textAlign: 'end',
     paddingRight: '10px',
+    textTransform: 'uppercase',
   },
   formSelectField1: {
     marginBottom: '15px',
