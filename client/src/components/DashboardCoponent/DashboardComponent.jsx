@@ -30,7 +30,6 @@ const useStyles = makeStyles({
   },
   dataRangeContainer: {
     display: 'flex',
-
     alignItems: 'center',
     padding: '0 10px',
   },
