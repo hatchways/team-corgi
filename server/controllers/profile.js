@@ -15,7 +15,7 @@ exports.createProfile = asyncHandler(async (req, res, next) => {
     throw new Error("Profile could not be created.");
   }
   await newProfile.save();
-  res.status(201).json({ profile: newProfile });
+  res.status(201).json({ success: { profile: newProfile } });
 });
 
 // @route GET /profile
@@ -32,12 +32,12 @@ exports.allProfiles = asyncHandler(async (req, res, next) => {
 // @route GET /profile/:id
 // Search profiles for matching id
 exports.searchProfiles = asyncHandler(async (req, res, next) => {
-  const profile = await Profile.findById(req.profile.id);
+  const profile = await Profile.findById(req.params.id);
   if (!profile) {
     res.status(404);
     throw new Error("Cannot find a matching profile.");
   }
-  res.status(200).json({ success: profile });
+  res.status(200).json({ success: { profile } });
 });
 
 // @route PATCH /profile/:id
