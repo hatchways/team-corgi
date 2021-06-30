@@ -13,10 +13,8 @@ const profileSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  address: {
-    type: String,
-    required: true,
-  },
+  email: String,
+  address: String,
   city: String,
   phoneNumber: Number,
   profilePic: String,

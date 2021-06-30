@@ -7,6 +7,12 @@ import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
 import DashboardComponent from '../../components/DashboardCoponent/DashboardComponent';
 import { useEffect } from 'react';
+import Popover from '@material-ui/core/Popover';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
+import Tooltip from '@material-ui/core/Tooltip';
+import { Fab, IconButton } from '@material-ui/core';
+import Notification from '../../components/Notification/Notification';
 
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
@@ -31,6 +37,37 @@ export default function Dashboard(): JSX.Element {
     <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
       <CssBaseline />
       <DashboardComponent />
+      <Grid item className={classes.drawerWrapper}>
+        <PopupState variant="popover" popupId="demo-popup-popover">
+          {(popupState) => (
+            <div>
+              <Tooltip title="notification">
+                <Fab {...bindTrigger(popupState)} color="primary">
+                  <NotificationsIcon></NotificationsIcon>
+                </Fab>
+              </Tooltip>
+              <Popover
+                {...bindPopover(popupState)}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'center',
+                }}
+              >
+                {/* <Box p={2}>
+                  <Typography>The content of the Popover.</Typography>
+                </Box> */}
+                <Notification username={loggedInUser}></Notification>
+              </Popover>
+            </div>
+          )}
+        </PopupState>
+        <ChatSideBanner loggedInUser={loggedInUser} />
+      </Grid>
+
     </Grid>
   );
 }
