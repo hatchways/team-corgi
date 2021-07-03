@@ -4,12 +4,12 @@ const requestSchema = new mongoose.Schema({
   user: {
     type: mongoose.Types.ObjectId,
     required: true,
-    ref: 'user'
+    ref: "user",
   },
   sitter: {
     type: mongoose.Types.ObjectId,
     required: true,
-    ref: 'user'
+    ref: "user",
   },
   start: {
     start: Date,
