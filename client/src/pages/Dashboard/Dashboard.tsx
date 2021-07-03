@@ -13,7 +13,6 @@ import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Fab, IconButton } from '@material-ui/core';
 import Notification from '../../components/Notification/Notification';
-import ChatSideBanner from '../../components/ChatSideBanner/ChatSideBanner';
 
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
