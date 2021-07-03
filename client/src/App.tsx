@@ -6,7 +6,6 @@ import Signup from './pages/SignUp/SignUp';
 import LandingPage from './pages/LandingPage/LandingPage';
 import Dashboard from './pages/Dashboard/Dashboard';
 import SitterProfile from './pages/SitterProfile/SitterProfile';
-import ManageBookings from './components/ManageBookings/ManageBookings';
 
 import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
