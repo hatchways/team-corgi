@@ -26,7 +26,7 @@ exports.readNotification = asyncHandler(async(req, res) => {
 
 });
 
-exports.createNotification = (async(req, res) => {
+exports.createNotification = asyncHandler(async(req, res) => {
     const request = req.body;
     const notification = await new Notifications({...request, createdAt: Date.now() });
     notification.save((err, not) => {
@@ -38,7 +38,7 @@ exports.createNotification = (async(req, res) => {
 
 });
 
-exports.getUnreadNotifications = (async(req, res) => {
+exports.getUnreadNotifications = asyncHandler(async(req, res) => {
     const receiverProfileId = req.params.id;
     const notifications = await Notifications.find({ receiver: receiverProfileId, read: false }).populate('sender');
     if (!notifications) {

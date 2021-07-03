@@ -1,6 +1,6 @@
 import { useState, useContext, createContext, FunctionComponent, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
-import { AuthApiData, AuthApiDataSuccess } from '../interface/AuthApiData';
+import { AuthApiData, AuthApiDataSuccess, AuthProfileApiDataSuccess, ProfileApiData } from '../interface/AuthApiData';
 import { User } from '../interface/User';
 import loginWithCookies from '../helpers/APICalls/loginWithCookies';
 import logoutAPI from '../helpers/APICalls/logout';
@@ -32,16 +32,30 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
   const [notifications, setNotifications] = useState<INotification[] | null | undefined>();
   const history = useHistory();
 
+  const getNotificationsFunction = async (profile: Profile | undefined | null) => {
+    try {
+      const nots = await getNotifications(profile?._id);
+      setNotifications(nots.notifications);
+    } catch {
+      (err: Error) => {
+        console.log(err);
+      };
+    }
+  };
+
+  const getProfileFunction = async (id: string) => {
+    try {
+      const profile = await getProfile(id);
+      setUserProfile(profile.success?.profile);
+      return profile.success?.profile;
+    } catch {
+      (err: Error) => console.log(err);
+    }
+  };
+
   const updateLoginContext = useCallback(
     (data: AuthApiDataSuccess) => {
       setLoggedInUser(data.user);
-      getProfile(data.user.id).then((res) => {
-        setUserProfile(res.success?.profile);
-        getNotifications(res.success?.profile._id).then((result) => {
-          setNotifications(result.notifications);
-        });
-      });
-
       history.push('/dashboard');
     },
     [history],
@@ -63,6 +77,9 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
       await loginWithCookies().then((data: AuthApiData) => {
         if (data.success) {
           updateLoginContext(data.success);
+          getProfileFunction(data.success.user.id);
+          getNotificationsFunction(userProfile);
+
           history.push('/dashboard');
         } else {
           // don't need to provide error feedback as this just means user doesn't have saved cookies or the cookies have not been authenticated on the backend
@@ -72,7 +89,7 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
       });
     };
     checkLoginWithCookies();
-  }, [updateLoginContext, history]);
+  }, [updateLoginContext, history, userProfile]);
   return (
     <AuthContext.Provider value={{ loggedInUser, updateLoginContext, logout, userProfile, notifications }}>
       {children}

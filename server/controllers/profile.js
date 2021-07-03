@@ -22,10 +22,6 @@ exports.createProfile = asyncHandler(async(req, res, next) => {
 // Get all profiles
 exports.allProfiles = asyncHandler(async(req, res, next) => {
     const profiles = await Profile.find();
-    if (!profiles) {
-        res.status(404);
-        throw new Error('Cannot access server.');
-    }
     res.status(200).json({ profiles });
 });
 

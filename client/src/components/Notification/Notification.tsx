@@ -10,13 +10,24 @@ const Notification = (): JSX.Element => {
       {notifications &&
         notifications.map((notification, index) => (
           <Box p={1} key={index}>
-            <Button>
-              {notification.sender === null ? 'unknown' : notification.sender.firstName} has {notification.type}ed your
-              service
-            </Button>
+            {notification.type === 'message' && (
+              <Button>
+                {notification.sender.firstName} {notification.sender.lastName} has sent you a message
+              </Button>
+            )}
+            {notification.type === 'request' && (
+              <Button>
+                {notification.sender.firstName} {notification.sender.lastName} has requested your service
+              </Button>
+            )}
+            {notification.type === 'accept' && (
+              <Button>
+                {notification.sender.firstName} {notification.sender.lastName} has accepted your service
+              </Button>
+            )}
           </Box>
         ))}
-      {notifications === undefined && (
+      {(notifications === undefined || notifications?.length == 0) && (
         <Box>
           <Button>No notifications</Button>
         </Box>
