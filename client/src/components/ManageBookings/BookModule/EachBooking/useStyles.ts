@@ -24,6 +24,7 @@ const useStyles = makeStyles(() => ({
   },
   name: {
     fontSize: '14px',
+    fontWeight: 'bold',
   },
   pic: {
     margin: '10px',
@@ -32,14 +33,16 @@ const useStyles = makeStyles(() => ({
     margin: '5%',
   },
   status: {
-    fontSize: '12px',
+    fontSize: '11px',
+    fontWeight: 'bold',
     color: 'rgb(125, 125, 125)',
     textTransform: 'uppercase',
-    marginRight: '15px',
+    marginRight: '30px',
   },
   time: {
     fontWeight: 'bold',
-    padding: '9px',
+    fontSize: '15px',
+    padding: '13px 10px 5px 18px',
   },
 }));
 

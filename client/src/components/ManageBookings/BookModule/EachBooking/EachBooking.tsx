@@ -5,24 +5,26 @@ import { Request } from '../../../../interface/Request';
 interface Props {
   className?: string;
   request: Request;
+  offer?: boolean;
+  handleAccept?: (arg1: boolean, arg2: number) => void;
+  id: number;
 }
 
-const EachBooking = ({ className, request }: Props): JSX.Element => {
+const EachBooking = ({ className, request, offer, handleAccept, id }: Props): JSX.Element => {
   const classes = useStyles();
+  const month = request.date.toLocaleString('default', { month: 'long' });
+  const stringDate = `${request.date.getDate()} ${month} ${request.date.getFullYear()}`;
 
-  const handleAccept = (accept: boolean) => {
-    console.log(accept);
-  };
   if (!request.name) return <CircularProgress />;
   const getStatus = () => {
-    if (!request.offer) return;
-    if (request.accepted == null) {
+    if (!offer) return;
+    if (request.accepted == null && handleAccept) {
       return (
         <Grid>
-          <Button size={'small'} className={classes.accept} onClick={() => handleAccept(true)}>
+          <Button size={'small'} className={classes.accept} onClick={() => handleAccept(true, id)}>
             Accept
           </Button>
-          <Button size={'small'} className={classes.decline} onClick={() => handleAccept(false)}>
+          <Button size={'small'} className={classes.decline} onClick={() => handleAccept(false, id)}>
             Decline
           </Button>
         </Grid>
@@ -33,7 +35,7 @@ const EachBooking = ({ className, request }: Props): JSX.Element => {
 
   return (
     <Grid className={className}>
-      <Typography className={classes.time}>{`${request.date}, ${
+      <Typography className={classes.time}>{`${stringDate}, ${
         request.startTime > 12 ? request.startTime - 12 : request.startTime
       }-${request.endTime > 12 ? request.endTime - 12 + ' PM' : request.endTime + ' AM'}`}</Typography>
       <Grid item className={classes.main}>

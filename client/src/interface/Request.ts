@@ -1,9 +1,8 @@
 export interface Request {
   name: string;
-  date: string;
+  date: Date;
   startTime: number;
   endTime: number;
   pic: string;
-  offer?: boolean;
   accepted?: boolean;
 }
