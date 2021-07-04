@@ -1,8 +1,8 @@
 import { ProfileApiData } from '../../interface/AuthApiData';
 import { FetchOptions } from '../../interface/FetchOptions';
-import { changeProfile } from '../../interface/Profile';
+import { Profile } from '../../interface/Profile';
 
-const editProfile = async (id: string, profile: changeProfile): Promise<ProfileApiData> => {
+const editProfile = async (id: string, profile: Profile): Promise<ProfileApiData> => {
   const fetchOptions: FetchOptions = {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },

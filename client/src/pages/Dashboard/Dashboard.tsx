@@ -5,7 +5,7 @@ import useStyles from './useStyles';
 import { useAuth } from '../../context/useAuthContext';
 import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
-import ChatSideBanner from '../../components/ChatSideBanner/ChatSideBanner';
+import DashboardComponent from '../../components/DashboardCoponent/DashboardComponent';
 import { useEffect } from 'react';
 import Popover from '@material-ui/core/Popover';
 import NotificationsIcon from '@material-ui/icons/Notifications';
@@ -40,7 +40,11 @@ export default function Dashboard(): JSX.Element {
   return (
     <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
       <CssBaseline />
+<<<<<<< HEAD
 
+=======
+      <DashboardComponent />
+>>>>>>> bb34c67d7d7968e41bfb7131573e61b2a637c326
       <Grid item className={classes.drawerWrapper}>
         <PopupState variant="popover" popupId="demo-popup-popover">
           {(popupState) => (

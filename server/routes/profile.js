@@ -14,7 +14,7 @@ const {
 router.route("/").post(protect, createProfile);
 router.route("/").get(allProfiles);
 router.route("/:id").get(searchProfiles);
-router.route("/:id").patch(editProfile);
+router.route("/:id").patch(protect, editProfile);
 router.route("/:id").delete(protect, deleteProfile);
 router.route("/userProfile/:id").get(getProfileFromUser);
 module.exports = router;
