@@ -15,6 +15,7 @@ const userRouter = require("./routes/user");
 const profilePhoto = require("./routes/profilePhoto");
 const notificationRouter = require('./routes/notifications');
 const profileRouter = require("./routes/profile");
+const protect = require("./middleware/auth");
 
 const { json, urlencoded } = express;
 let users = [];
@@ -29,9 +30,12 @@ const io = socketio(server, {
 });
 
 
-
+io.use((socket, next) => {
+    protect;
+    next();
+})
 io.on("connection", (socket) => {
-    let handshake = socket.handshake.headers.cookie;
+
     socket.on('login', ({ user }) => {
         users.push(user);
         console.log(users)
