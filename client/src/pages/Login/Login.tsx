@@ -16,11 +16,13 @@ import dogs from '../../Images/goldenRetrievers.jpg';
 import logo from '../../Images/logo.png';
 import LandingPageBar from '../../components/LandingPageBar/LandingPageBar';
 import Logo from '../../components/Logo/Logo';
+import { useSocket } from '../../context/useSocketContext';
 
 export default function Login(): JSX.Element {
   const classes = useStyles();
   const { updateLoginContext } = useAuth();
   const { updateSnackBarMessage } = useSnackBar();
+  const { socket, initSocket } = useSocket();
 
   const handleSubmit = (
     { email, password }: { email: string; password: string },
@@ -32,6 +34,7 @@ export default function Login(): JSX.Element {
         updateSnackBarMessage(data.error.message);
       } else if (data.success) {
         updateLoginContext(data.success);
+        initSocket();
       } else {
         // should not get here from backend but this catch is for an unknown issue
         console.error({ data });

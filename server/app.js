@@ -17,7 +17,7 @@ const notificationRouter = require('./routes/notifications');
 const profileRouter = require("./routes/profile");
 
 const { json, urlencoded } = express;
-
+let users = [];
 connectDB();
 const app = express();
 const server = http.createServer(app);
@@ -28,10 +28,27 @@ const io = socketio(server, {
     },
 });
 
+
+
 io.on("connection", (socket) => {
-    console.log("user connected");
+    let handshake = socket.handshake.headers.cookie;
+    console.log("handshake ", handshake);
+
+    socket.on('login', ({ user }) => {
+        users.push(user);
+        console.log(users)
+    });
+    socket.on('logout', ({ user }) => {
+        users.splice(user.id, 1)[0];
+        console.log(users);
+    })
+
+    socket.on('disconnect', () => {
+        // users.splice()
+        console.log('User left and total users: ', io.engine.clientsCount);
 
 
+    })
 });
 
 if (process.env.NODE_ENV === "development") {

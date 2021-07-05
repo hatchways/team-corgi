@@ -3,6 +3,14 @@ import { AppBar, Toolbar, Button } from '@material-ui/core';
 import React from 'react';
 import Logo from './logo.png';
 import { makeStyles } from '@material-ui/styles';
+import Popover from '@material-ui/core/Popover';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
+import Tooltip from '@material-ui/core/Tooltip';
+import { Fab } from '@material-ui/core';
+import Notification from '../../components/Notification/Notification';
+import ChatSideBanner from '../ChatSideBanner/ChatSideBanner';
+import { useAuth } from '../../context/useAuthContext';
 
 const useStyles = makeStyles({
   box: {
@@ -25,6 +33,7 @@ const useStyles = makeStyles({
 
 function Header() {
   const classes = useStyles();
+  const { loggedInUser } = useAuth();
   return (
     <AppBar position="static" color={'transparent'}>
       <Toolbar>
@@ -39,6 +48,31 @@ function Header() {
         <Button variant="contained" color="secondary" className={classes.button}>
           Sign Up
         </Button>
+        <PopupState variant="popover" popupId="demo-popup-popover">
+          {(popupState) => (
+            <div>
+              <Tooltip title="notification">
+                <Fab {...bindTrigger(popupState)} color="primary">
+                  <NotificationsIcon></NotificationsIcon>
+                </Fab>
+              </Tooltip>
+              <Popover
+                {...bindPopover(popupState)}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'center',
+                }}
+              >
+                <Notification></Notification>
+              </Popover>
+            </div>
+          )}
+        </PopupState>
+        {/* <ChatSideBanner loggedInUser={loggedInUser} /> */}
       </Toolbar>
     </AppBar>
   );

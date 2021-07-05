@@ -8,6 +8,7 @@ import { Profile } from '../interface/Profile';
 import getProfile from '../helpers/APICalls/getProfile';
 import { INotification } from '../interface/Notification';
 import getNotifications from '../helpers/APICalls/getNotifications';
+import { useSocket } from './useSocketContext';
 
 interface IAuthContext {
   loggedInUser: User | null | undefined;
@@ -79,7 +80,6 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
           updateLoginContext(data.success);
           getProfileFunction(data.success.user.id);
           getNotificationsFunction(userProfile);
-
           history.push('/dashboard');
         } else {
           // don't need to provide error feedback as this just means user doesn't have saved cookies or the cookies have not been authenticated on the backend

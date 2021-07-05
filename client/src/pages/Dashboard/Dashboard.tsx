@@ -14,18 +14,19 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { Fab } from '@material-ui/core';
 import Notification from '../../components/Notification/Notification';
 import getProfile from '../../helpers/APICalls/getProfile';
+import ChatSideBanner from '../../components/ChatSideBanner/ChatSideBanner';
 
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
 
   const { loggedInUser, userProfile } = useAuth();
-  const { initSocket } = useSocket();
+  const { socket, initSocket } = useSocket();
 
   const history = useHistory();
 
   useEffect(() => {
-    initSocket();
-  }, [initSocket]);
+    socket?.emit('login', { user: loggedInUser });
+  }, [loggedInUser, socket]);
 
   useEffect(() => {
     loggedInUser?.id && getProfile(loggedInUser.id);
@@ -40,12 +41,8 @@ export default function Dashboard(): JSX.Element {
   return (
     <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
       <CssBaseline />
-<<<<<<< HEAD
-
-=======
       <DashboardComponent />
->>>>>>> bb34c67d7d7968e41bfb7131573e61b2a637c326
-      <Grid item className={classes.drawerWrapper}>
+      {/* <Grid item className={classes.drawerWrapper}>
         <PopupState variant="popover" popupId="demo-popup-popover">
           {(popupState) => (
             <div>
@@ -70,8 +67,8 @@ export default function Dashboard(): JSX.Element {
             </div>
           )}
         </PopupState>
-        <ChatSideBanner loggedInUser={loggedInUser} />
-      </Grid>
+        </Grid> */}
+      <ChatSideBanner loggedInUser={loggedInUser} />
     </Grid>
   );
 }
