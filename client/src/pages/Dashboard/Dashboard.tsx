@@ -14,6 +14,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { Fab } from '@material-ui/core';
 import Notification from '../../components/Notification/Notification';
 import getProfile from '../../helpers/APICalls/getProfile';
+import ChatSideBanner from '../../components/ChatSideBanner/ChatSideBanner';
 
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
