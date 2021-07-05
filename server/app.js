@@ -32,8 +32,6 @@ const io = socketio(server, {
 
 io.on("connection", (socket) => {
     let handshake = socket.handshake.headers.cookie;
-    console.log("handshake ", handshake);
-
     socket.on('login', ({ user }) => {
         users.push(user);
         console.log(users)
