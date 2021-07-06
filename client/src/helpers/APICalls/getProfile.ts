@@ -1,7 +1,7 @@
 import { ProfileApiData } from '../../interface/AuthApiData';
 import { FetchOptions } from '../../interface/FetchOptions';
 
-const getUserProfile = async (id: string): Promise<ProfileApiData> => {
+const getProfile = async (id: string | undefined): Promise<ProfileApiData> => {
   const fetchOptions: FetchOptions = {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
@@ -15,4 +15,4 @@ const getUserProfile = async (id: string): Promise<ProfileApiData> => {
     }));
 };
 
-export default getUserProfile;
+export default getProfile;

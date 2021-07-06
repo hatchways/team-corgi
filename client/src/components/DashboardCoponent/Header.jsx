@@ -9,7 +9,6 @@ import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Fab } from '@material-ui/core';
 import Notification from '../../components/Notification/Notification';
-import ChatSideBanner from '../ChatSideBanner/ChatSideBanner';
 import { useAuth } from '../../context/useAuthContext';
 
 const useStyles = makeStyles({
@@ -72,7 +71,6 @@ function Header() {
             </div>
           )}
         </PopupState>
-        {/* <ChatSideBanner loggedInUser={loggedInUser} /> */}
       </Toolbar>
     </AppBar>
   );

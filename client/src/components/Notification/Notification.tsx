@@ -3,10 +3,11 @@ import Button from '@material-ui/core/Button';
 import { useAuth } from '../../context/useAuthContext';
 
 const Notification = (): JSX.Element => {
-  const { notifications } = useAuth();
+  const { notifications, userProfile } = useAuth();
 
   return (
     <>
+      {console.log(notifications)}
       {notifications &&
         notifications.map((notification, index) => (
           <Box p={1} key={index}>

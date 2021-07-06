@@ -8,14 +8,15 @@ const connectDB = require("./db");
 const { join } = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
-const cors = require('cors');
+const cors = require("cors");
 
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const profilePhoto = require("./routes/profilePhoto");
-const notificationRouter = require('./routes/notifications');
+const notificationRouter = require("./routes/notifications");
 const profileRouter = require("./routes/profile");
 const protect = require("./middleware/auth");
+const conversationRouter = require("./routes/conversations");
 
 const { json, urlencoded } = express;
 let users = [];
@@ -72,8 +73,9 @@ app.use(cors());
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
 app.use("/api/pic", profilePhoto);
-app.use('/notifications', notificationRouter);
+app.use("/notifications", notificationRouter);
 app.use("/profile", profileRouter);
+app.use("/conversations", conversationRouter);
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "/client/build")));
