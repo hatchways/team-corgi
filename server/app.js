@@ -1,3 +1,6 @@
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+const stripePublicKey = process.env.STRIPE_PUBLIC_KEY;
+console.log(stripeSecretKey, stripePublicKey)
 const colors = require("colors");
 const path = require("path");
 const http = require("http");

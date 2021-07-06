@@ -3,6 +3,7 @@ import { AppBar, Toolbar, Button } from '@material-ui/core';
 import React from 'react';
 import Logo from './logo.png';
 import { makeStyles } from '@material-ui/styles';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   box: {
