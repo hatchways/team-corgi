@@ -7,12 +7,6 @@ import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
 import DashboardComponent from '../../components/DashboardCoponent/DashboardComponent';
 import { useEffect } from 'react';
-import Popover from '@material-ui/core/Popover';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
-import Tooltip from '@material-ui/core/Tooltip';
-import { Fab } from '@material-ui/core';
-import Notification from '../../components/Notification/Notification';
 import getProfile from '../../helpers/APICalls/getProfile';
 import ChatSideBanner from '../../components/ChatSideBanner/ChatSideBanner';
 
@@ -45,30 +39,6 @@ export default function Dashboard(): JSX.Element {
       <DashboardComponent />
 
       <Grid item className={classes.drawerWrapper}>
-        <PopupState variant="popover" popupId="demo-popup-popover">
-          {(popupState) => (
-            <div>
-              <Tooltip title="notification">
-                <Fab {...bindTrigger(popupState)} color="primary">
-                  <NotificationsIcon></NotificationsIcon>
-                </Fab>
-              </Tooltip>
-              <Popover
-                {...bindPopover(popupState)}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'center',
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'center',
-                }}
-              >
-                <Notification username={loggedInUser}></Notification>
-              </Popover>
-            </div>
-          )}
-        </PopupState>
         <ChatSideBanner loggedInUser={loggedInUser} />
       </Grid>
     </Grid>
