@@ -6,3 +6,9 @@ export interface Request {
   pic: string;
   accepted?: boolean;
 }
+
+export interface RequestApiData {
+  requests?: Request[];
+  request?: Request;
+  error?: { message: string };
+}
