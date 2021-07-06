@@ -11,14 +11,15 @@ import Popover from '@material-ui/core/Popover';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 import Tooltip from '@material-ui/core/Tooltip';
-import { Fab, IconButton } from '@material-ui/core';
+import { Fab } from '@material-ui/core';
 import Notification from '../../components/Notification/Notification';
+import getProfile from '../../helpers/APICalls/getProfile';
 import ChatSideBanner from '../../components/ChatSideBanner/ChatSideBanner';
 
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
 
-  const { loggedInUser } = useAuth();
+  const { loggedInUser, userProfile } = useAuth();
   const { initSocket } = useSocket();
 
   const history = useHistory();
@@ -27,17 +28,22 @@ export default function Dashboard(): JSX.Element {
     initSocket();
   }, [initSocket]);
 
+  useEffect(() => {
+    loggedInUser?.id && getProfile(loggedInUser.id);
+  }, [loggedInUser]);
+
   if (loggedInUser === undefined) return <CircularProgress />;
   if (!loggedInUser) {
     history.push('/login');
-    // loading for a split seconds until history.push works
     return <CircularProgress />;
   }
 
   return (
     <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
       <CssBaseline />
+
       <DashboardComponent />
+
       <Grid item className={classes.drawerWrapper}>
         <PopupState variant="popover" popupId="demo-popup-popover">
           {(popupState) => (
@@ -58,10 +64,7 @@ export default function Dashboard(): JSX.Element {
                   horizontal: 'center',
                 }}
               >
-                {/* <Box p={2}>
-                  <Typography>The content of the Popover.</Typography>
-                </Box> */}
-                <Notification username={loggedInUser}></Notification>
+                <Notification></Notification>
               </Popover>
             </div>
           )}
