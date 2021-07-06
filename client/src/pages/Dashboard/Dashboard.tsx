@@ -7,11 +7,13 @@ import { useSocket } from '../../context/useSocketContext';
 import { useHistory } from 'react-router-dom';
 import DashboardComponent from '../../components/DashboardCoponent/DashboardComponent';
 import { useEffect } from 'react';
+import getProfile from '../../helpers/APICalls/getProfile';
+import ChatSideBanner from '../../components/ChatSideBanner/ChatSideBanner';
 
 export default function Dashboard(): JSX.Element {
   const classes = useStyles();
 
-  const { loggedInUser } = useAuth();
+  const { loggedInUser, userProfile } = useAuth();
   const { initSocket } = useSocket();
 
   const history = useHistory();
@@ -20,17 +22,25 @@ export default function Dashboard(): JSX.Element {
     initSocket();
   }, [initSocket]);
 
+  useEffect(() => {
+    loggedInUser?.id && getProfile(loggedInUser.id);
+  }, [loggedInUser]);
+
   if (loggedInUser === undefined) return <CircularProgress />;
   if (!loggedInUser) {
     history.push('/login');
-    // loading for a split seconds until history.push works
     return <CircularProgress />;
   }
 
   return (
     <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
       <CssBaseline />
+
       <DashboardComponent />
+
+      <Grid item className={classes.drawerWrapper}>
+        <ChatSideBanner loggedInUser={loggedInUser} />
+      </Grid>
     </Grid>
   );
 }

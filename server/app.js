@@ -11,10 +11,14 @@ const connectDB = require("./db");
 const { join } = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const cors = require("cors");
 
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
+const profilePhoto = require("./routes/profilePhoto");
+const notificationRouter = require("./routes/notifications");
 const profileRouter = require("./routes/profile");
+const conversationRouter = require("./routes/conversations");
 
 const { json, urlencoded } = express;
 
@@ -29,7 +33,7 @@ const io = socketio(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log("connected");
+    console.log("user connected");
 });
 
 if (process.env.NODE_ENV === "development") {
@@ -39,15 +43,21 @@ app.use(json());
 app.use(urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(join(__dirname, "public")));
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
 app.use((req, res, next) => {
   req.io = io;
   next();
 });
+app.use(cors());
 
 app.use("/auth", authRouter);
 app.use("/users", userRouter);
+app.use("/api/pic", profilePhoto);
+app.use("/notifications", notificationRouter);
 app.use("/profile", profileRouter);
+app.use("/conversations", conversationRouter);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "/client/build")));

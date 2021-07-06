@@ -4,6 +4,12 @@ import React from 'react';
 import Logo from './logo.png';
 import { makeStyles } from '@material-ui/styles';
 import { Link } from 'react-router-dom';
+import Popover from '@material-ui/core/Popover';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
+import Tooltip from '@material-ui/core/Tooltip';
+import { Fab } from '@material-ui/core';
+import Notification from '../../components/Notification/Notification';
 
 const useStyles = makeStyles({
   box: {
@@ -40,6 +46,31 @@ function Header() {
         <Button variant="contained" color="secondary" className={classes.button}>
           Sign Up
         </Button>
+
+        <PopupState variant="popover" popupId="demo-popup-popover">
+          {(popupState) => (
+            <div>
+              <Tooltip title="notification">
+                <Fab {...bindTrigger(popupState)} color="primary">
+                  <NotificationsIcon></NotificationsIcon>
+                </Fab>
+              </Tooltip>
+              <Popover
+                {...bindPopover(popupState)}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'center',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'center',
+                }}
+              >
+                <Notification></Notification>
+              </Popover>
+            </div>
+          )}
+        </PopupState>
       </Toolbar>
     </AppBar>
   );

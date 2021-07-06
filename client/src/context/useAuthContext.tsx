@@ -1,13 +1,19 @@
 import { useState, useContext, createContext, FunctionComponent, useEffect, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
-import { AuthApiData, AuthApiDataSuccess } from '../interface/AuthApiData';
+import { AuthApiData, AuthApiDataSuccess, AuthProfileApiDataSuccess, ProfileApiData } from '../interface/AuthApiData';
 import { User } from '../interface/User';
 import loginWithCookies from '../helpers/APICalls/loginWithCookies';
 import logoutAPI from '../helpers/APICalls/logout';
+import { Profile } from '../interface/Profile';
+import getProfile from '../helpers/APICalls/getProfile';
+import { INotification } from '../interface/Notification';
+import getNotifications from '../helpers/APICalls/getNotifications';
 
 interface IAuthContext {
   loggedInUser: User | null | undefined;
   updateLoginContext: (data: AuthApiDataSuccess) => void;
+  userProfile: Profile | undefined | null;
+  notifications: INotification[] | null | undefined;
   logout: () => void;
 }
 
@@ -15,16 +21,26 @@ export const AuthContext = createContext<IAuthContext>({
   loggedInUser: undefined,
   updateLoginContext: () => null,
   logout: () => null,
+  userProfile: undefined,
+  notifications: undefined,
 });
 
 export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
   // default undefined before loading, once loaded provide user or null if logged out
   const [loggedInUser, setLoggedInUser] = useState<User | null | undefined>();
+  const [userProfile, setUserProfile] = useState<Profile | null | undefined>();
+  const [notifications, setNotifications] = useState<INotification[] | null | undefined>();
   const history = useHistory();
 
   const updateLoginContext = useCallback(
     (data: AuthApiDataSuccess) => {
       setLoggedInUser(data.user);
+      getProfile(data.user.id).then((res) => {
+        setUserProfile(res.success?.profile);
+        getNotifications(res.success?.profile._id).then((result) => {
+          setNotifications(result.notifications);
+        });
+      });
       history.push('/dashboard');
     },
     [history],
@@ -36,6 +52,8 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
       .then(() => {
         history.push('/login');
         setLoggedInUser(null);
+        setUserProfile(null);
+        setNotifications(null);
       })
       .catch((error) => console.error(error));
   }, [history]);
@@ -55,7 +73,11 @@ export const AuthProvider: FunctionComponent = ({ children }): JSX.Element => {
     };
     checkLoginWithCookies();
   }, [updateLoginContext, history]);
-  return <AuthContext.Provider value={{ loggedInUser, updateLoginContext, logout }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ loggedInUser, updateLoginContext, logout, userProfile, notifications }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export function useAuth(): IAuthContext {
