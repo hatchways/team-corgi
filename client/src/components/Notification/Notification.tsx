@@ -1,41 +1,37 @@
 import { Box } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import { useEffect, useState } from 'react';
-import { INotification } from '../../interface/Notification';
-import { User } from '../../interface/User';
+import { useAuth } from '../../context/useAuthContext';
 
-interface Props {
-  username: User;
-}
-
-const Notification = ({ username }: Props): JSX.Element => {
-  const [notifications, setNotifications] = useState<INotification[]>([]);
-
-  useEffect(() => {
-    fetch(`http://localhost:3001/notifications/all/60c7d2fbdf1550572c6660d2`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((res) => res.json())
-      .then((result) => {
-        setNotifications(result.notifications);
-        console.log(result.notifications);
-      });
-  }, [username]);
+const Notification = (): JSX.Element => {
+  const { notifications } = useAuth();
 
   return (
     <>
-      {console.log(notifications)}
       {notifications &&
         notifications.map((notification, index) => (
           <Box p={1} key={index}>
-            <Button>
-              {notification.sender} has {notification.type}ed your service
-            </Button>
+            {notification.type === 'message' && (
+              <Button>
+                {notification.sender.firstName} {notification.sender.lastName} has sent you a message
+              </Button>
+            )}
+            {notification.type === 'request' && (
+              <Button>
+                {notification.sender.firstName} {notification.sender.lastName} has requested your service
+              </Button>
+            )}
+            {notification.type === 'accept' && (
+              <Button>
+                {notification.sender.firstName} {notification.sender.lastName} has accepted your service
+              </Button>
+            )}
           </Box>
         ))}
+      {(notifications === undefined || notifications?.length == 0) && (
+        <Box>
+          <Button>No notifications</Button>
+        </Box>
+      )}
     </>
   );
 };

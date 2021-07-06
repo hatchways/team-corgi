@@ -1,5 +1,6 @@
 import { User } from './User';
 import { Profile } from './Profile';
+import { INotification } from './Notification';
 
 export interface AuthApiDataSuccess {
   message: string;
@@ -19,4 +20,9 @@ export interface ProfileApiData {
 export interface AuthApiData {
   error?: { message: string };
   success?: AuthApiDataSuccess;
+}
+
+
+export interface NotificationApiDataSuccess {
+  notifications: INotification[];
 }

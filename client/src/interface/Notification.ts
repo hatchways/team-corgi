@@ -1,9 +1,10 @@
+import { Profile } from './Profile';
+
 export interface INotification {
-    sender: string,
-    receiver: string,
-    type: string,
-    createdAt: Date,
-    read: boolean
-
-
+  sender: Profile;
+  receiver: Profile;
+  type: string;
+  createdAt: Date;
+  read: boolean;
+  title?: String;
 }

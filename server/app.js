@@ -30,7 +30,7 @@ const io = socketio(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log("connected");
+    console.log("user connected");
 });
 
 if (process.env.NODE_ENV === "development") {
