@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const requestSchema = new mongoose.Schema({
+  id: mongoose.Schema.Types.ObjectId,
   user: {
     type: mongoose.Types.ObjectId,
     required: true,
@@ -11,25 +12,20 @@ const requestSchema = new mongoose.Schema({
     required: true,
     ref: "user",
   },
-  start: {
-    start: Date,
+  day: {
+    type: Date,
     required: true,
   },
-  end: {
-    end: Date,
+  startTime: {
+    type: Number,
     required: true,
   },
-  dropOffTime: {
-    type: String,
+  endTime: {
+    type: Number,
     required: true,
   },
   accept: {
     accepted: Boolean,
-    default: false,
-  },
-  decline: {
-    declined: Boolean,
-    default: false,
   },
   paid: {
     paid: Boolean,
