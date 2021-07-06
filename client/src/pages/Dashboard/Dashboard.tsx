@@ -64,7 +64,7 @@ export default function Dashboard(): JSX.Element {
                   horizontal: 'center',
                 }}
               >
-                <Notification></Notification>
+                <Notification username={loggedInUser}></Notification>
               </Popover>
             </div>
           )}
