@@ -36,22 +36,16 @@ io.use((socket, next) => {
     next();
 })
 io.on("connection", (socket) => {
-
     socket.on('login', ({ user }) => {
         users.push(user);
         console.log(users)
     });
     socket.on('logout', ({ user }) => {
-        users.splice(user.id, 1)[0];
+        users = users.filter((u) => u.id !== user.id);
         console.log(users);
     })
 
-    socket.on('disconnect', () => {
-        // users.splice()
-        console.log('User left and total users: ', io.engine.clientsCount);
-
-
-    })
+    socket.on('disconnect', () => { console.log('Total Users', users.length) })
 });
 
 if (process.env.NODE_ENV === "development") {

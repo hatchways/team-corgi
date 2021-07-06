@@ -10,7 +10,7 @@ const AuthMenu = (): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const { logout, loggedInUser } = useAuth();
-  const { socket } = useSocket();
+  const { socket, initSocket } = useSocket();
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -21,9 +21,9 @@ const AuthMenu = (): JSX.Element => {
 
   const handleLogout = () => {
     handleClose();
-    logout();
     socket?.emit('logout', { user: loggedInUser });
     socket?.disconnect();
+    logout();
   };
 
   return (
