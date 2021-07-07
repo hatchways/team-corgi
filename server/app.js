@@ -17,6 +17,7 @@ const notificationRouter = require("./routes/notifications");
 const profileRouter = require("./routes/profile");
 const protect = require("./middleware/auth");
 const conversationRouter = require("./routes/conversations");
+const requestRouter = require("./routes/requests");
 
 const { json, urlencoded } = express;
 let users = [];
@@ -36,6 +37,7 @@ io.use((socket, next) => {
     next();
 })
 io.on("connection", (socket) => {
+  console.log("user connected");
     socket.on('login', ({ user }) => {
         users.push(user);
         console.log(users)
@@ -70,6 +72,7 @@ app.use("/api/pic", profilePhoto);
 app.use("/notifications", notificationRouter);
 app.use("/profile", profileRouter);
 app.use("/conversations", conversationRouter);
+app.use("/request", requestRouter);
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "/client/build")));
