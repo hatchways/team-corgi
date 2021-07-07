@@ -1,10 +1,13 @@
 export interface Request {
   name: string;
-  date: Date;
+  day: Date;
   startTime: number;
   endTime: number;
-  pic: string;
+  pic?: string;
   accepted?: boolean;
+  _id: string;
+  user: string;
+  sitter: string;
 }
 
 export interface RequestApiData {

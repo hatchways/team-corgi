@@ -8,7 +8,7 @@ export const postRequest = async (request: Request): Promise<RequestApiData> => 
     headers: { 'Content-Type': 'application/json' },
     credentials: 'include',
   };
-  return await fetch(`/requests`, fetchOptions)
+  return await fetch(`/request`, fetchOptions)
     .then((res) => res.json())
     .catch(() => ({
       error: { message: 'Unable to connect to server, please try again' },
@@ -19,9 +19,10 @@ export const editRequest = async (id: string, request: Request): Promise<Request
   const fetchOptions: FetchOptions = {
     method: 'PATCH',
     body: JSON.stringify({ request }),
+    headers: { 'Content-Type': 'application/json' },
     credentials: 'include',
   };
-  return await fetch(`/requests/:${id}`, fetchOptions)
+  return await fetch(`/request/${id}`, fetchOptions)
     .then((res) => res.json())
     .catch(() => ({
       error: { message: 'Unable to connect to server, please try again' },
@@ -31,11 +32,10 @@ export const editRequest = async (id: string, request: Request): Promise<Request
 export const getRequest = async (user: string): Promise<RequestApiData> => {
   const fetchOptions: FetchOptions = {
     method: 'GET',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ user }),
     credentials: 'include',
+    headers: { 'Content-Type': 'application/json' },
   };
-  return await fetch(`/requests`, fetchOptions)
+  return await fetch(`/request/${user}`, fetchOptions)
     .then((res) => res.json())
     .catch(() => ({
       error: { message: 'Unable to connect to server. Please try again' },
