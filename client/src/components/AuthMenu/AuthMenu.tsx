@@ -4,12 +4,13 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { useAuth } from '../../context/useAuthContext';
+import { useSocket } from '../../context/useSocketContext';
 
 const AuthMenu = (): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const { logout } = useAuth();
-
+  const { logout, loggedInUser } = useAuth();
+  const { socket, initSocket } = useSocket();
   const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -20,6 +21,8 @@ const AuthMenu = (): JSX.Element => {
 
   const handleLogout = () => {
     handleClose();
+    socket?.emit('logout', { user: loggedInUser });
+    socket?.disconnect();
     logout();
   };
 
