@@ -9,6 +9,7 @@ import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Fab } from '@material-ui/core';
 import Notification from '../../components/Notification/Notification';
+import { useAuth } from '../../context/useAuthContext';
 
 const useStyles = makeStyles({
   box: {
@@ -31,6 +32,7 @@ const useStyles = makeStyles({
 
 function Header() {
   const classes = useStyles();
+  const { loggedInUser } = useAuth();
   return (
     <AppBar position="static" color={'transparent'}>
       <Toolbar>
@@ -45,7 +47,6 @@ function Header() {
         <Button variant="contained" color="secondary" className={classes.button}>
           Sign Up
         </Button>
-
         <PopupState variant="popover" popupId="demo-popup-popover">
           {(popupState) => (
             <div>

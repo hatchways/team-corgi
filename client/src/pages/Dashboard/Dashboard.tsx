@@ -14,13 +14,13 @@ export default function Dashboard(): JSX.Element {
   const classes = useStyles();
 
   const { loggedInUser, userProfile } = useAuth();
-  const { initSocket } = useSocket();
+  const { socket, initSocket } = useSocket();
 
   const history = useHistory();
 
   useEffect(() => {
-    initSocket();
-  }, [initSocket]);
+    socket?.emit('login', { user: loggedInUser });
+  }, [loggedInUser, socket]);
 
   useEffect(() => {
     loggedInUser?.id && getProfile(loggedInUser.id);
@@ -35,7 +35,6 @@ export default function Dashboard(): JSX.Element {
   return (
     <Grid container component="main" className={`${classes.root} ${classes.dashboard}`}>
       <CssBaseline />
-
       <DashboardComponent />
 
       <Grid item className={classes.drawerWrapper}>

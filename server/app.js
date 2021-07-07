@@ -15,26 +15,41 @@ const userRouter = require("./routes/user");
 const profilePhoto = require("./routes/profilePhoto");
 const notificationRouter = require("./routes/notifications");
 const profileRouter = require("./routes/profile");
+const protect = require("./middleware/auth");
 const conversationRouter = require("./routes/conversations");
 
 const { json, urlencoded } = express;
-
+let users = [];
 connectDB();
 const app = express();
 const server = http.createServer(app);
 
 const io = socketio(server, {
-  cors: {
-    origin: "*",
-  },
+    cors: {
+        origin: "*",
+    },
 });
 
+
+io.use((socket, next) => {
+    protect;
+    next();
+})
 io.on("connection", (socket) => {
-    console.log("user connected");
+    socket.on('login', ({ user }) => {
+        users.push(user);
+        console.log(users)
+    });
+    socket.on('logout', ({ user }) => {
+        users = users.filter((u) => u.id !== user.id);
+        console.log(users);
+    })
+
+    socket.on('disconnect', () => { console.log('Total Users', users.length) })
 });
 
 if (process.env.NODE_ENV === "development") {
-  app.use(logger("dev"));
+    app.use(logger("dev"));
 }
 app.use(json());
 app.use(urlencoded({ extended: false }));
@@ -44,8 +59,8 @@ app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
 app.use((req, res, next) => {
-  req.io = io;
-  next();
+    req.io = io;
+    next();
 });
 app.use(cors());
 
@@ -57,15 +72,15 @@ app.use("/profile", profileRouter);
 app.use("/conversations", conversationRouter);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "/client/build")));
+    app.use(express.static(path.join(__dirname, "/client/build")));
 
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname), "client", "build", "index.html")
-  );
+    app.get("*", (req, res) =>
+        res.sendFile(path.resolve(__dirname), "client", "build", "index.html")
+    );
 } else {
-  app.get("/", (req, res) => {
-    res.send("API is running");
-  });
+    app.get("/", (req, res) => {
+        res.send("API is running");
+    });
 }
 
 app.use(notFound);
@@ -73,9 +88,9 @@ app.use(errorHandler);
 
 // Handle unhandled promise rejections
 process.on("unhandledRejection", (err, promise) => {
-  console.log(`Error: ${err.message}`.red);
-  // Close server & exit process
-  server.close(() => process.exit(1));
+    console.log(`Error: ${err.message}`.red);
+    // Close server & exit process
+    server.close(() => process.exit(1));
 });
 
 module.exports = { app, server };
