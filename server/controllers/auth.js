@@ -1,6 +1,7 @@
-const User = require("../models/User");
-const asyncHandler = require("express-async-handler");
-const generateToken = require("../utils/generateToken");
+const User = require('../models/User');
+const asyncHandler = require('express-async-handler');
+const generateToken = require('../utils/generateToken');
+const Profile = require('../models/Profile');
 
 // @route POST /auth/register
 // @desc Register user
@@ -12,14 +13,14 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
 
   if (emailExists) {
     res.status(400);
-    throw new Error("A user with that email already exists");
+    throw new Error('A user with that email already exists');
   }
 
   const usernameExists = await User.findOne({ username });
 
   if (usernameExists) {
     res.status(400);
-    throw new Error("A user with that username already exists");
+    throw new Error('A user with that username already exists');
   }
 
   const user = await User.create({
@@ -28,11 +29,16 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
     password,
   });
 
+  const profile = await Profile.create({
+    userId: user._id,
+    firstName: 'John',
+    lastName: 'Doe',
+  });
   if (user) {
     const token = generateToken(user._id);
     const secondsInWeek = 604800;
 
-    res.cookie("token", token, {
+    res.cookie('token', token, {
       httpOnly: true,
       maxAge: secondsInWeek * 1000,
     });
@@ -44,11 +50,12 @@ exports.registerUser = asyncHandler(async (req, res, next) => {
           username: user.username,
           email: user.email,
         },
+        profile,
       },
     });
   } else {
     res.status(400);
-    throw new Error("Invalid user data");
+    throw new Error('Invalid user data');
   }
 });
 
@@ -64,7 +71,7 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
     const token = generateToken(user._id);
     const secondsInWeek = 604800;
 
-    res.cookie("token", token, {
+    res.cookie('token', token, {
       httpOnly: true,
       maxAge: secondsInWeek * 1000,
     });
@@ -80,7 +87,7 @@ exports.loginUser = asyncHandler(async (req, res, next) => {
     });
   } else {
     res.status(401);
-    throw new Error("Invalid email or password");
+    throw new Error('Invalid email or password');
   }
 });
 
@@ -92,7 +99,7 @@ exports.loadUser = asyncHandler(async (req, res, next) => {
 
   if (!user) {
     res.status(401);
-    throw new Error("Not authorized");
+    throw new Error('Not authorized');
   }
 
   res.status(200).json({
@@ -110,7 +117,7 @@ exports.loadUser = asyncHandler(async (req, res, next) => {
 // @desc Logout user
 // @access Public
 exports.logoutUser = asyncHandler(async (req, res, next) => {
-  res.clearCookie("token");
+  res.clearCookie('token');
 
-  res.send("You have successfully logged out");
+  res.send('You have successfully logged out');
 });
