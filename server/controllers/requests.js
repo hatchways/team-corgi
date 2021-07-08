@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
 const asycnHandler = require("express-async-handler");
 const Request = require("../models/Requests");
-const Profile = require("../models/Profile");
-
 // @route POST /request
 // Add a new request
 exports.newRequest = asycnHandler(async (req, res, next) => {
@@ -17,10 +15,10 @@ exports.newRequest = asycnHandler(async (req, res, next) => {
   res.status(200).json({ request: newRequest });
 });
 
-// @route GET /request
+// @route GET /request/:id
 // Get all users requests
 exports.userRequests = asycnHandler(async (req, res, next) => {
-  const id = req.body.user;
+  const id = req.params.id;
   const requests = await Request.find({
     $or: [{ user: id }, { sitter: id }],
   });
@@ -34,11 +32,11 @@ exports.userRequests = asycnHandler(async (req, res, next) => {
 // @route PATCH /request/:id
 // Edit a request with matching userId
 exports.editRequest = asycnHandler(async (req, res, next) => {
-  const id = req.params.id;
-  const request = req.body;
+  const id = req.body.request._id;
+  const request = req.body.request;
 
   try {
-    const editedRequest = await Profile.findByIdAndUpdate(id, request, {
+    const editedRequest = await Request.findByIdAndUpdate(id, request, {
       new: true,
     });
     res.status(201).json({ success: { request: editedRequest } });

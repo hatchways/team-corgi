@@ -8,9 +8,9 @@ const {
   userRequests,
 } = require("../controllers/requests");
 
-router.route("/").get(userRequests);
+router.route("/:id").get(userRequests);
 router.route("/").post(newRequest);
-router.route("./:id").patch(editRequest);
-router.route("./:id").delete(deleteRequest);
+router.route("/:id").patch(editRequest);
+router.route("/:id").delete(deleteRequest);
 
 module.exports = router;

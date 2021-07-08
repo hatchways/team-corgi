@@ -24,9 +24,7 @@ const requestSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  accept: {
-    accepted: Boolean,
-  },
+  accepted: Boolean,
   paid: {
     paid: Boolean,
     default: false,
