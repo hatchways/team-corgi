@@ -12,10 +12,9 @@ interface Props {
 
 const EachBooking = ({ className, request, offer, handleAccept, id }: Props): JSX.Element => {
   const classes = useStyles();
-  const month = request.date.toLocaleString('default', { month: 'long' });
-  const stringDate = `${request.date.getDate()} ${month} ${request.date.getFullYear()}`;
-
-  if (!request.name) return <CircularProgress />;
+  const month = request.day.toLocaleString('default', { month: 'long' });
+  const stringDate = `${request.day.getDate()} ${month} ${request.day.getFullYear()}`;
+  if (!request.day) return <CircularProgress />;
   const getStatus = () => {
     if (!offer) return;
     if (request.accepted == null && handleAccept) {

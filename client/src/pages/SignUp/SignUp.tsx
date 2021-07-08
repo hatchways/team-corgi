@@ -75,7 +75,6 @@ export default function Register(): JSX.Element {
         </Box>
       </Grid>
       <img className={classes.dogs} src={dogs} />
-      <LandingPageBar signupLink="/signup" loginLink="/login" sitterLink="/signup"></LandingPageBar>
     </Grid>
   );
 }
