@@ -15,16 +15,15 @@ const BookSitter = (): JSX.Element => {
   const [date, handleDate] = useState<Date | null>(new Date());
   const [startTime, handleStartTime] = useState<Date | null>(new Date());
   const [endTime, handleEndTime] = useState<Date | null>(new Date());
-  const [isAlert, setIsAlert] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState('');
 
   const location = useLocation();
   const sendRequest = () => {
     createRequests(startTime, endTime, date, '60d4994ec30c55353c3e5d93', '60d4996fc30c55353c3e5d94').then((res) => {
       if (res.error) {
-        setIsError(true);
+        setIsError('true');
       } else if (res) {
-        setIsAlert(true);
+        setIsError('false');
       }
     });
   };
@@ -74,8 +73,8 @@ const BookSitter = (): JSX.Element => {
           </Grid>
         </form>
       </Card>
-      {isAlert && <Alert severity="success">Request sent successfully</Alert>} ;
-      {isError && <Alert severity="error">Something went wrong</Alert>}
+      {isError === 'false' && <Alert severity="success">Request sent successfully</Alert>} ;
+      {isError === 'true' && <Alert severity="error">Something went wrong</Alert>}
     </>
   );
 };
