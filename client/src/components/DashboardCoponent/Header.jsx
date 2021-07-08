@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { AppBar, Toolbar, Button } from '@material-ui/core';
+import { AppBar, Toolbar, Button, Grid, Menu, MenuItem } from '@material-ui/core';
 import React from 'react';
 import Logo from './logo.png';
 import { makeStyles } from '@material-ui/styles';
@@ -9,6 +9,9 @@ import PopupState, { bindTrigger, bindPopover } from 'material-ui-popup-state';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Fab } from '@material-ui/core';
 import Notification from '../../components/Notification/Notification';
+import { useAuth } from '../../context/useAuthContext';
+import { useHistory } from 'react-router-dom';
+import { usePopupState, bindMenu } from 'material-ui-popup-state/hooks';
 
 const useStyles = makeStyles({
   box: {
@@ -31,24 +34,64 @@ const useStyles = makeStyles({
 
 function Header() {
   const classes = useStyles();
+  const { loggedInUser } = useAuth();
+  const history = useHistory();
+  const popupState = usePopupState({ variant: 'popover', popupId: 'demoMenu' });
+  const { logout } = useAuth();
+
+  const handleMenu = (address) => {
+    popupState.close();
+    history.push(`/${address}`);
+  };
+  const handleLogout = () => {
+    logout();
+    popupState.close;
+  };
   return (
     <AppBar position="static" color={'transparent'}>
       <Toolbar>
         <img src={Logo} alt="Logo" className={classes.logo} />
         <box className={classes.box}></box>
-        <a href="/" className={classes.aTag}>
-          BECOME A SITTER
-        </a>
-        <Button variant="outlined" color="secondary" className={classes.loginButton}>
-          Login
-        </Button>
-        <Button variant="contained" color="secondary" className={classes.button}>
-          Sign Up
-        </Button>
+        {!loggedInUser ? (
+          <Grid>
+            <a href="/" className={classes.aTag}>
+              BECOME A SITTER
+            </a>
+            <Button
+              variant="outlined"
+              onClick={() => history.push('/login')}
+              color="secondary"
+              className={classes.loginButton}
+            >
+              Login
+            </Button>
+            <Button
+              variant="contained"
+              onClick={() => history.push('/signup')}
+              color="secondary"
+              className={classes.button}
+            >
+              Sign Up
+            </Button>
+          </Grid>
+        ) : (
+          <Grid>
+            <Button variant="contained" {...bindTrigger(popupState)} className={classes.button}>
+              Menu
+            </Button>
+            <Menu {...bindMenu(popupState)}>
+              <MenuItem onClick={() => handleMenu('dashboard')}>Home</MenuItem>
+              <MenuItem onClick={() => handleMenu('profile')}>Profile</MenuItem>
+              <MenuItem onClick={() => handleMenu('manage-bookings')}>Bookings</MenuItem>
+              <MenuItem onClick={() => handleMenu('manage-profile')}>Edit Profile</MenuItem>
+              <MenuItem onClick={() => handleLogout()}>Logout</MenuItem>
+            </Menu>
+          </Grid>
+        )}
 
         <PopupState variant="popover" popupId="demo-popup-popover">
           {(popupState) => (
-            <div>
+            <Grid>
               <Tooltip title="notification">
                 <Fab {...bindTrigger(popupState)} color="primary">
                   <NotificationsIcon></NotificationsIcon>
@@ -67,7 +110,7 @@ function Header() {
               >
                 <Notification></Notification>
               </Popover>
-            </div>
+            </Grid>
           )}
         </PopupState>
       </Toolbar>

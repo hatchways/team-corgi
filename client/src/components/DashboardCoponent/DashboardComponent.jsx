@@ -68,9 +68,6 @@ export default function Dashboardcomponent() {
   const classes = useStyles();
   return (
     <Grid container direction="column">
-      <Grid item>
-        <Header className={classes.header} />
-      </Grid>
       <Grid item container direction="column" alignItems="center">
         <Grid item>
           <Typography variant="h3" className={classes.typography}>
