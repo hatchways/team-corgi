@@ -7,7 +7,7 @@ import LandingPage from './pages/LandingPage/LandingPage';
 import Dashboard from './pages/Dashboard/Dashboard';
 import SitterProfile from './pages/SitterProfile/SitterProfile';
 import ManageBookings from './components/ManageBookings/ManageBookings';
-
+import Header from './components/DashboardCoponent/Header';
 import { AuthProvider } from './context/useAuthContext';
 import { SocketProvider } from './context/useSocketContext';
 import { SnackBarProvider } from './context/useSnackbarContext';
@@ -15,6 +15,7 @@ import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 
 import './App.css';
 import ManageProfile from './pages/ManageProfile/ManageProfile';
+import Payment from './components/Payment/Payment';
 
 function App(): JSX.Element {
   return (
@@ -23,6 +24,7 @@ function App(): JSX.Element {
         <SnackBarProvider>
           <AuthProvider>
             <SocketProvider>
+              <Header />
               <Switch>
                 <Route exact path="/landingpage" component={LandingPage} />
                 <Route exact path="/login" component={Login} />
@@ -32,10 +34,11 @@ function App(): JSX.Element {
                 <ProtectedRoutes path="/manage-bookings" component={ManageBookings} />
                 <Route exact path="/dashboard">
                   <Dashboard />
+                  {/* <Payment /> */}
                 </Route>
-                <Route path="*">
+                {/* <Route path="*">
                   <Redirect to="/login" />
-                </Route>
+                </Route> */}
               </Switch>
             </SocketProvider>
           </AuthProvider>

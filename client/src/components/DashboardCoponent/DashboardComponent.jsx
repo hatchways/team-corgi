@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Grid, Typography, Paper, Box } from '@material-ui/core';
 // import { KeyboardDatePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import Header from './Header';
@@ -65,16 +67,16 @@ const useStyles = makeStyles({
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function Dashboardcomponent() {
+  const history = useHistory();
   const classes = useStyles();
   return (
     <Grid container direction="column">
-      <Grid item>
-        <Header className={classes.header} />
-      </Grid>
+      <Grid item></Grid>
       <Grid item container direction="column" alignItems="center">
         <Grid item>
           <Typography variant="h3" className={classes.typography}>
             Your search results
+            {/* <button onClick={() => history.push('/manage-profile')}>Apple</button> */}
           </Typography>
         </Grid>
         <Grid item className={classes.searchBar}>

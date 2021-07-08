@@ -19,6 +19,7 @@ const profilePhoto = require("./routes/profilePhoto");
 const notificationRouter = require("./routes/notifications");
 const profileRouter = require("./routes/profile");
 const conversationRouter = require("./routes/conversations");
+const payment = require("./routes/payment");
 
 const { json, urlencoded } = express;
 
