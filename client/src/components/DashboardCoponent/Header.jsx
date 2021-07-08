@@ -30,13 +30,19 @@ const useStyles = makeStyles({
     width: '180px',
     height: '30px',
   },
+  menu: {
+    marginTop: '35px',
+  },
+  menuButton: {
+    marginRight: '10px',
+  },
 });
 
 function Header() {
   const classes = useStyles();
   const { loggedInUser } = useAuth();
   const history = useHistory();
-  const popupState = usePopupState({ variant: 'popover', popupId: 'demoMenu' });
+  const popupState = usePopupState({ variant: 'popover', popupId: 'Menu' });
   const { logout } = useAuth();
 
   const handleMenu = (address) => {
@@ -76,10 +82,10 @@ function Header() {
           </Grid>
         ) : (
           <Grid>
-            <Button variant="contained" {...bindTrigger(popupState)} className={classes.button}>
+            <Button variant="contained" {...bindTrigger(popupState)} className={classes.menuButton}>
               Menu
             </Button>
-            <Menu {...bindMenu(popupState)}>
+            <Menu {...bindMenu(popupState)} className={classes.menu}>
               <MenuItem onClick={() => handleMenu('dashboard')}>Home</MenuItem>
               <MenuItem onClick={() => handleMenu('profile')}>Profile</MenuItem>
               <MenuItem onClick={() => handleMenu('manage-bookings')}>Bookings</MenuItem>
