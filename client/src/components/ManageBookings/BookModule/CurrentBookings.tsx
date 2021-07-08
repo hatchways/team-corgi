@@ -13,10 +13,8 @@ const CurrentBookings = ({ bookings, handleAccept }: Props): JSX.Element => {
   const classes = useStyles();
   const now = new Date();
 
-  let pastBookings = [...bookings];
-  pastBookings = pastBookings.filter((request) => request.day < now);
-  let futureBookings = [...bookings];
-  futureBookings = futureBookings.filter((request) => request.day >= now);
+  const pastBookings = [...bookings].filter((request) => request.day < now);
+  const futureBookings = [...bookings].filter((request) => request.day >= now);
 
   if (!bookings) return <CircularProgress />;
   return (

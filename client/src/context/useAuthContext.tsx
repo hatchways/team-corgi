@@ -8,6 +8,7 @@ import { Profile } from '../interface/Profile';
 import getProfile from '../helpers/APICalls/getProfile';
 import { INotification } from '../interface/Notification';
 import getNotifications from '../helpers/APICalls/getNotifications';
+import { useSocket } from './useSocketContext';
 
 interface IAuthContext {
   loggedInUser: User | null | undefined;
