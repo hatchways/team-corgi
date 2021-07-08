@@ -40,10 +40,9 @@ const useStyles = makeStyles({
 
 function Header() {
   const classes = useStyles();
-  const { loggedInUser } = useAuth();
+  const { loggedInUser, logout } = useAuth();
   const history = useHistory();
   const popupState = usePopupState({ variant: 'popover', popupId: 'Menu' });
-  const { logout } = useAuth();
 
   const handleMenu = (address) => {
     popupState.close();
