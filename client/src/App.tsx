@@ -32,6 +32,7 @@ function App(): JSX.Element {
                 <Route exact path="/profile" component={SitterProfile} />
                 <ProtectedRoutes path="/manage-profile" component={ManageProfile} />
                 <ProtectedRoutes path="/manage-bookings" component={ManageBookings} />
+                <ProtectedRoutes exact path="/book-sitter" component={SitterProfile} />
                 <Route exact path="/dashboard">
                   <Dashboard />
                 </Route>

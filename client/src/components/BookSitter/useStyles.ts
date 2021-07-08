@@ -4,6 +4,12 @@ import { relative } from 'path';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
+    root: {
+      width: '100%',
+      '& > * + *': {
+        marginTop: theme.spacing(2),
+      },
+    },
     mainCard: {
       margin: '1rem',
       height: '400px',
