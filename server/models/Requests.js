@@ -26,6 +26,7 @@ const requestSchema = new mongoose.Schema({
     },
     accept: {
         accepted: Boolean,
+        default: false
     },
     paid: {
         paid: Boolean,
