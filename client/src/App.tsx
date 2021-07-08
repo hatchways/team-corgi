@@ -15,6 +15,7 @@ import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 
 import './App.css';
 import ManageProfile from './pages/ManageProfile/ManageProfile';
+import Header from './components/DashboardCoponent/Header';
 
 function App(): JSX.Element {
   return (
@@ -23,6 +24,7 @@ function App(): JSX.Element {
         <SnackBarProvider>
           <AuthProvider>
             <SocketProvider>
+              <Header />
               <Switch>
                 <Route exact path="/landingpage" component={LandingPage} />
                 <Route exact path="/login" component={Login} />
