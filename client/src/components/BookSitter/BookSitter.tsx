@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
 import { Typography, Grid, Card, Button } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 import Alert from '@material-ui/lab/Alert';
@@ -5,11 +7,12 @@ import { useLocation } from 'react-router-dom';
 import { useAuth } from '../../context/useAuthContext';
 import useStyles from './useStyles';
 import { useState } from 'react';
+
 import { KeyboardDatePicker, KeyboardTimePicker, MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import createRequests from '../../helpers/APICalls/createRequest';
 
-const BookSitter = (): JSX.Element => {
+const BookSitter = () => {
   const classes = useStyles();
   const { loggedInUser } = useAuth();
   const [date, handleDate] = useState<Date | null>(new Date());
