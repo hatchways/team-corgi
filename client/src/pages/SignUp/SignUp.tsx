@@ -17,10 +17,18 @@ export default function Register(): JSX.Element {
   const { updateSnackBarMessage } = useSnackBar();
 
   const handleSubmit = (
-    { username, email, password }: { email: string; password: string; username: string },
-    { setSubmitting }: FormikHelpers<{ email: string; password: string; username: string }>,
+    {
+      username,
+      email,
+      password,
+      firstname,
+      lastname,
+    }: { username: string; email: string; password: string; firstname: string; lastname: string },
+    {
+      setSubmitting,
+    }: FormikHelpers<{ email: string; password: string; username: string; firstname: string; lastname: string }>,
   ) => {
-    register(username, email, password).then((data) => {
+    register(username, email, password, firstname, lastname).then((data) => {
       if (data.error) {
         console.error({ error: data.error.message });
         setSubmitting(false);
@@ -52,7 +60,7 @@ export default function Register(): JSX.Element {
         <Logo />
         <Box className={classes.authWrapper}>
           <Box width="100%" maxWidth={450} p={3} alignSelf="center">
-            <Grid container>
+            <Grid container className={classes.grid}>
               <Grid item xs>
                 <Typography className={classes.welcome} component="h1" variant="h5">
                   Sign up
