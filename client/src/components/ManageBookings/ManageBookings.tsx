@@ -40,6 +40,9 @@ const ManageBookings = (): JSX.Element => {
     const all = requests.sort((a: Request, b: Request) => a.day.getTime() - b.day.getTime());
     all.forEach(async (request, i) => {
       all[i].day = new Date(request.day);
+      all[i].startTime = new Date(request.startTime);
+      all[i].endTime = new Date(request.endTime);
+      console.log(request.day);
       const owner = (await getProfile(request.user)).success?.profile;
       all[i].name = owner?.firstName + ' ' + owner?.lastName;
       all[i].pic = owner?.profilePic;

@@ -1,8 +1,8 @@
 export interface Request {
   name: string;
   day: Date;
-  startTime: number;
-  endTime: number;
+  startTime: Date;
+  endTime: Date;
   pic?: string;
   accepted?: boolean;
   _id: string;
