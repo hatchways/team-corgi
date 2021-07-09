@@ -7,6 +7,9 @@ const useStyles = makeStyles((theme: Theme) => ({
       borderBottom: '1.2px solid rgba(0, 0, 0, 0.2)',
     },
   },
+  grid: {
+    marginTop: '-7rem',
+  },
   authWrapper: {
     position: 'relative',
     top: '20%',
@@ -17,7 +20,7 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   welcome: {
     fontSize: 35,
-    paddingBottom: '2rem',
+    // paddingBottom: '2rem',
     color: '#000000',
     fontWeight: 900,
     fontFamily: "'Open Sans'",

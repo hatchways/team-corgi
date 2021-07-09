@@ -80,44 +80,45 @@ function Header() {
             </Button>
           </Grid>
         ) : (
-          <Grid>
-            <Button variant="contained" {...bindTrigger(popupState)} className={classes.menuButton}>
-              Menu
-            </Button>
-            <Menu {...bindMenu(popupState)} className={classes.menu}>
-              <MenuItem onClick={() => handleMenu('dashboard')}>Home</MenuItem>
-              <MenuItem onClick={() => handleMenu('profile')}>Profile</MenuItem>
-              <MenuItem onClick={() => handleMenu('manage-bookings')}>Bookings</MenuItem>
-              <MenuItem onClick={() => handleMenu('manage-profile')}>Edit Profile</MenuItem>
-              <MenuItem onClick={() => handleLogout()}>Logout</MenuItem>
-            </Menu>
-          </Grid>
-        )}
-
-        <PopupState variant="popover" popupId="demo-popup-popover">
-          {(popupState) => (
+          <>
             <Grid>
-              <Tooltip title="notification">
-                <Fab {...bindTrigger(popupState)} color="primary">
-                  <NotificationsIcon></NotificationsIcon>
-                </Fab>
-              </Tooltip>
-              <Popover
-                {...bindPopover(popupState)}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'center',
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'center',
-                }}
-              >
-                <Notification></Notification>
-              </Popover>
+              <Button variant="contained" {...bindTrigger(popupState)} className={classes.menuButton}>
+                Menu
+              </Button>
+              <Menu {...bindMenu(popupState)} className={classes.menu}>
+                <MenuItem onClick={() => handleMenu('dashboard')}>Home</MenuItem>
+                <MenuItem onClick={() => handleMenu('profile')}>Profile</MenuItem>
+                <MenuItem onClick={() => handleMenu('manage-bookings')}>Bookings</MenuItem>
+                <MenuItem onClick={() => handleMenu('manage-profile')}>Edit Profile</MenuItem>
+                <MenuItem onClick={() => handleLogout()}>Logout</MenuItem>
+              </Menu>
             </Grid>
-          )}
-        </PopupState>
+            <PopupState variant="popover" popupId="demo-popup-popover">
+              {(popupState) => (
+                <Grid>
+                  <Tooltip title="notification">
+                    <Fab size="small" {...bindTrigger(popupState)} color="primary">
+                      <NotificationsIcon></NotificationsIcon>
+                    </Fab>
+                  </Tooltip>
+                  <Popover
+                    {...bindPopover(popupState)}
+                    anchorOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'center',
+                    }}
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'center',
+                    }}
+                  >
+                    <Notification></Notification>
+                  </Popover>
+                </Grid>
+              )}
+            </PopupState>
+          </>
+        )}
       </Toolbar>
     </AppBar>
   );

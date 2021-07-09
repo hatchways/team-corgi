@@ -37,7 +37,7 @@ export default function ManageProfile(): JSX.Element {
       case '/manage-profile/availability':
         return <Availability />;
 
-      case '/manageprofile/security':
+      case '/manage-profile/security':
         return <Security />;
 
       case '/manage-profile/settings':

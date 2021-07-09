@@ -7,7 +7,6 @@ const Notification = (): JSX.Element => {
 
   return (
     <>
-      {console.log(notifications)}
       {notifications &&
         notifications.map((notification, index) => (
           <Box p={1} key={index}>

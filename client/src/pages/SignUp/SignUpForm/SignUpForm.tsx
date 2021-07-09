@@ -13,10 +13,14 @@ interface Props {
       username,
       email,
       password,
+      firstname,
+      lastname,
     }: {
       email: string;
       password: string;
       username: string;
+      firstname: string;
+      lastname: string;
     },
     {
       setStatus,
@@ -25,6 +29,8 @@ interface Props {
       email: string;
       password: string;
       username: string;
+      firstname: string;
+      lastname: string;
     }>,
   ) => void;
 }
@@ -38,6 +44,8 @@ const SignUpForm = ({ handleSubmit }: Props): JSX.Element => {
         email: '',
         password: '',
         username: '',
+        firstname: '',
+        lastname: '',
       }}
       validationSchema={Yup.object().shape({
         username: Yup.string().required('Username is required').max(40, 'Username is too long'),
@@ -46,6 +54,8 @@ const SignUpForm = ({ handleSubmit }: Props): JSX.Element => {
           .required('Password is required')
           .max(100, 'Password is too long')
           .min(6, 'Password too short'),
+        firstname: Yup.string().required('First Name is required').max(256, 'First Name is too long'),
+        lastname: Yup.string().required('Last Name is required').max(256, 'Last name is too long'),
       })}
       onSubmit={handleSubmit}
     >
@@ -109,6 +119,48 @@ const SignUpForm = ({ handleSubmit }: Props): JSX.Element => {
             helperText={touched.password ? errors.password : ''}
             error={touched.password && Boolean(errors.password)}
             value={values.password}
+            onChange={handleChange}
+            variant="outlined"
+          />
+          <Typography className={classes.label}>FIRST NAME</Typography>
+          <TextField
+            id="firstname"
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            InputProps={{
+              classes: { input: classes.inputs },
+            }}
+            name="firstname"
+            autoComplete="firstname"
+            placeholder="First Name"
+            autoFocus
+            helperText={touched.firstname ? errors.firstname : ''}
+            error={touched.firstname && Boolean(errors.firstname)}
+            value={values.firstname}
+            onChange={handleChange}
+            variant="outlined"
+          />
+          <Typography className={classes.label}>LAST NAME</Typography>
+          <TextField
+            id="lastname"
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
+            InputProps={{
+              classes: { input: classes.inputs },
+            }}
+            name="lastname"
+            autoComplete="lastname"
+            placeholder="Last Name"
+            autoFocus
+            helperText={touched.lastname ? errors.lastname : ''}
+            error={touched.lastname && Boolean(errors.lastname)}
+            value={values.lastname}
             onChange={handleChange}
             variant="outlined"
           />
