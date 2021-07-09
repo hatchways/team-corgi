@@ -35,8 +35,10 @@ const EachBooking = ({ className, request, offer, handleAccept, id }: Props): JS
   return (
     <Grid className={className}>
       <Typography className={classes.time}>{`${stringDate}, ${
-        request.startTime > 12 ? request.startTime - 12 : request.startTime
-      }-${request.endTime > 12 ? request.endTime - 12 + ' PM' : request.endTime + ' AM'}`}</Typography>
+        request.startTime.getHours() > 12 ? request.startTime.getHours() - 12 : request.startTime.getHours()
+      }-${
+        request.endTime.getHours() > 12 ? request.endTime.getHours() - 12 + ' PM' : request.endTime.getHours() + ' AM'
+      }`}</Typography>
       <Grid item className={classes.main}>
         <Grid className={classes.client}>
           <Avatar src={request.pic} className={classes.pic} />
